@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BuiltByMK — Websites & Digital Tools for Online Coaches</title>
+  <meta name="description" content="Landing pages, lead magnets and client tools built for online coaches and course creators. Fast, professional, conversion-focused." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:#08080E;color:#F0F0F5;overflow-x:hidden;}
+    h1,h2,h3,h4{font-family:'Oswald',sans-serif;font-weight:700;}
+
+    /* ── TYPOGRAPHY ── */
+    .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:#F5782A;}
+    .display{font-family:'Oswald',sans-serif;font-size:clamp(48px,8vw,88px);line-height:.97;font-weight:700;color:#fff;}
+    .section-title{font-family:'Oswald',sans-serif;font-size:clamp(34px,5vw,52px);font-weight:700;color:#fff;line-height:1.05;}
+
+    /* ── LAYOUT ── */
+    .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+    .section{padding:100px 0;}
+
+    /* ── BUTTONS ── */
+    .btn-primary{
+      display:inline-flex;align-items:center;gap:8px;
+      background:#F5782A;color:#fff;
+      font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;letter-spacing:.03em;
+      padding:15px 30px;border-radius:12px;border:none;cursor:pointer;
+      text-decoration:none;transition:transform .15s,box-shadow .15s;
+      box-shadow:0 4px 24px rgba(245,120,42,.35);
+    }
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(245,120,42,.45);}
+    .btn-secondary{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(255,255,255,.06);color:#fff;
+      font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;letter-spacing:.03em;
+      padding:15px 30px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);cursor:pointer;
+      text-decoration:none;transition:background .15s,border-color .15s;
+    }
+    .btn-secondary:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);}
+
+    /* ── NAV ── */
+    .nav-link{color:rgba(255,255,255,.5);font-size:14px;font-weight:500;text-decoration:none;transition:color .15s;}
+    .nav-link:hover{color:#fff;}
+
+    /* ── TAGS ── */
+    .tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:5px 12px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em;}
+    .tag-page{background:rgba(96,165,250,.12);color:#93C5FD;}
+    .tag-app {background:rgba(52,211,153,.12);color:#6EE7B7;}
+    .tag-quiz{background:rgba(251,191,36,.12);color:#FDE68A;}
+
+    /* ── PROJECT CARDS ── */
+    .project-card{
+      background:#0F0F18;
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:24px;overflow:hidden;
+      transition:border-color .2s,transform .2s;
+    }
+    .project-card:hover{border-color:rgba(245,120,42,.4);transform:translateY(-4px);}
+
+    /* ── PRICE CARDS ── */
+    .price-card{
+      background:#0F0F18;
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:24px;padding:36px;
+      transition:border-color .2s,transform .2s;
+      display:flex;flex-direction:column;
+    }
+    .price-card:hover{border-color:rgba(245,120,42,.3);transform:translateY(-4px);}
+    .price-card.featured{
+      border-color:#F5782A;
+      background:linear-gradient(160deg,rgba(245,120,42,.08) 0%,rgba(245,120,42,.03) 100%);
+    }
+
+    /* ── PROCESS STEPS ── */
+    .step-num{
+      font-family:'Oswald',sans-serif;font-size:56px;font-weight:700;
+      color:rgba(245,120,42,.2);line-height:1;
+    }
+
+    /* ── CHECK ICON ── */
+    .check{color:#F5782A;flex-shrink:0;margin-top:1px;}
+
+    /* ── MARQUEE ── */
+    .marquee-track{display:flex;gap:48px;animation:scroll 22s linear infinite;white-space:nowrap;}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .marquee-item{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;color:rgba(255,255,255,.22);text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:48px;}
+    .marquee-item::after{content:'·';color:#F5782A;}
+
+    /* ── DIVIDER ── */
+    .divider{width:100%;height:1px;background:rgba(255,255,255,.06);}
+
+    /* ── MOBILE ── */
+    #mobile-menu{display:none;}
+    #mobile-menu.open{display:flex;flex-direction:column;}
+    #hamburger{display:none;}
+
+    /* ── PHOTO FRAME ── */
+    .photo-frame{
+      position:relative;border-radius:28px;overflow:hidden;
+      box-shadow:0 32px 80px rgba(0,0,0,.5);
+    }
+    .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+    .photo-badge{
+      position:absolute;bottom:20px;left:20px;right:20px;
+      background:rgba(8,8,14,.82);backdrop-filter:blur(12px);
+      border:1px solid rgba(255,255,255,.1);border-radius:14px;
+      padding:14px 18px;display:flex;align-items:center;gap:12px;
+    }
+
+    @media(max-width:768px){
+      #hamburger{display:flex;}
+      #desktop-nav{display:none;}
+      .hero-ctas{flex-direction:column;}
+      .hero-ctas a,.hero-ctas button{width:100%;justify-content:center;}
+      .hero-split{grid-template-columns:1fr!important;}
+      .hero-photo-col{display:none!important;}
+      .projects-grid{grid-template-columns:1fr!important;}
+      .prices-grid{grid-template-columns:1fr!important;}
+      .process-grid{grid-template-columns:1fr!important;}
+      .about-grid{grid-template-columns:1fr!important;}
+      .stats-grid{grid-template-columns:repeat(2,1fr)!important;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+  NAV
+═══════════════════════════════════════════════════ -->
+<header style="position:sticky;top:0;z-index:50;background:rgba(8,8,14,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.05);">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;height:68px;">
+    <a href="#" style="font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:#fff;text-decoration:none;">
+      Built<span style="color:#F5782A;">By</span>MK
+    </a>
+    <nav id="desktop-nav" style="display:flex;align-items:center;gap:36px;">
+      <a href="#work"     class="nav-link">Work</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#process"  class="nav-link">Process</a>
+      <a href="#about"    class="nav-link">About</a>
+      <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27m%20interested%20in%20working%20with%20BuiltByMK" target="_blank" class="btn-primary" style="padding:10px 22px;font-size:15px;box-shadow:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.122 1.522 5.858L0 24l6.335-1.508A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.368l-.36-.213-3.76.895.952-3.653-.235-.376A9.782 9.782 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+        WhatsApp
+      </a>
+    </nav>
+    <button id="hamburger" style="background:none;border:none;cursor:pointer;padding:6px;color:#fff;" aria-label="Menu">
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" style="border-top:1px solid rgba(255,255,255,.06);padding:20px 24px;gap:20px;">
+    <a href="#work"     class="nav-link" style="font-size:16px;">Work</a>
+    <a href="#services" class="nav-link" style="font-size:16px;">Services</a>
+    <a href="#process"  class="nav-link" style="font-size:16px;">Process</a>
+    <a href="#about"    class="nav-link" style="font-size:16px;">About</a>
+    <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27m%20interested%20in%20working%20with%20BuiltByMK" target="_blank" class="btn-primary" style="justify-content:center;">WhatsApp Me</a>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════════
+  HERO
+═══════════════════════════════════════════════════ -->
+<section style="padding:80px 0 72px;">
+  <div class="wrap">
+    <div class="hero-split" style="display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:center;">
+
+      <!-- Text -->
+      <div>
+        <p class="label" style="margin-bottom:22px;">BuiltByMK · Websites for coaches</p>
+        <h1 class="display" style="margin-bottom:26px;">
+          Your coaching<br>is powerful.<br><span style="color:#F5782A;">Your website</span><br>should be too.
+        </h1>
+        <p style="font-size:18px;color:rgba(255,255,255,.5);line-height:1.7;max-width:480px;margin-bottom:40px;">
+          I build landing pages, lead magnets, and client tools for online coaches and course creators. Fast turnaround. No agency markup. Built by someone who actually coaches.
+        </p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;" class="hero-ctas">
+          <a href="#work" class="btn-primary">See My Work</a>
+          <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27d%20like%20to%20start%20a%20project" target="_blank" class="btn-secondary">Start a Project →</a>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:56px;background:rgba(255,255,255,.06);border-radius:16px;overflow:hidden;">
+          <div style="background:#08080E;padding:22px 18px;">
+            <p style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">4</p>
+            <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;">Projects built</p>
+          </div>
+          <div style="background:#08080E;padding:22px 18px;">
+            <p style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">48h</p>
+            <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;">Avg. turnaround</p>
+          </div>
+          <div style="background:#08080E;padding:22px 18px;">
+            <p style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">3</p>
+            <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;">Live sites</p>
+          </div>
+          <div style="background:#08080E;padding:22px 18px;">
+            <p style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">$0</p>
+            <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;">Monthly fees</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo -->
+      <div class="hero-photo-col">
+        <div class="photo-frame" style="height:580px;">
+          <img src="Mesmile.jpeg" alt="MK — fitness coach and founder of BuiltByMK" />
+          <div class="photo-badge">
+            <div style="width:36px;height:36px;background:#F5782A;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="18" height="18" fill="none" stroke="#fff" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            </div>
+            <div>
+              <p style="font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;color:#fff;line-height:1.2;">MK</p>
+              <p style="font-size:12px;color:rgba(255,255,255,.45);">Coach · Builder · Doha, Qatar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+  MARQUEE
+═══════════════════════════════════════════════════ -->
+<div style="overflow:hidden;padding:28px 0;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);">
+  <div style="display:flex;">
+    <div class="marquee-track">
+      <span class="marquee-item">Landing Pages</span>
+      <span class="marquee-item">Lead Magnets</span>
+      <span class="marquee-item">Quizzes &amp; Assessments</span>
+      <span class="marquee-item">Client Portals</span>
+      <span class="marquee-item">Workout Trackers</span>
+      <span class="marquee-item">Course Landing Pages</span>
+      <span class="marquee-item">Booking Pages</span>
+      <span class="marquee-item">Email Capture Tools</span>
+      <span class="marquee-item">Landing Pages</span>
+      <span class="marquee-item">Lead Magnets</span>
+      <span class="marquee-item">Quizzes &amp; Assessments</span>
+      <span class="marquee-item">Client Portals</span>
+      <span class="marquee-item">Workout Trackers</span>
+      <span class="marquee-item">Course Landing Pages</span>
+      <span class="marquee-item">Booking Pages</span>
+      <span class="marquee-item">Email Capture Tools</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+  WORK
+═══════════════════════════════════════════════════ -->
+<section id="work" class="section">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:52px;">
+      <div>
+        <p class="label" style="margin-bottom:10px;">Selected Work</p>
+        <h2 class="section-title">What I've built</h2>
+      </div>
+      <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27d%20like%20to%20discuss%20a%20project" target="_blank" class="btn-secondary" style="font-size:14px;padding:12px 22px;">Start your project →</a>
+    </div>
+
+    <div class="projects-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+
+      <!-- Project 1: Beyond the Scale -->
+      <div class="project-card">
+        <div style="padding:32px 32px 0;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+            <span class="tag tag-page">Landing Page</span>
+            <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#34D399;">
+              <span style="width:6px;height:6px;background:#34D399;border-radius:50%;display:inline-block;"></span>
+              Live
+            </span>
+          </div>
+          <h3 style="font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:10px;">Beyond the Scale</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:24px;">Telehealth weight loss landing page for a GLP-1 medical coaching practice. Dark premium look, Calendly booking integration, and a Typeform lead capture funnel.</p>
+        </div>
+        <!-- Preview strip using the site's actual brand colours -->
+        <div style="height:6px;background:linear-gradient(90deg,#0F1F38,#F5782A);"></div>
+        <div style="padding:20px 32px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;gap:8px;">
+            <span style="background:#0F1F38;color:rgba(255,255,255,.4);font-size:11px;padding:4px 10px;border-radius:6px;">#0F1F38</span>
+            <span style="background:#F5782A;color:#fff;font-size:11px;padding:4px 10px;border-radius:6px;">#F5782A</span>
+          </div>
+          <a href="https://beyondthescale.site" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#F5782A;text-decoration:none;">
+            View live site
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2: Cole Performance -->
+      <div class="project-card">
+        <div style="padding:32px 32px 0;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+            <span class="tag tag-page">Landing Page</span>
+            <span style="font-size:12px;color:rgba(255,255,255,.3);">On request</span>
+          </div>
+          <h3 style="font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:10px;">Cole Performance</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:24px;">Men's strength and conditioning coaching site. Editorial cream-and-green aesthetic — deliberately distinct from the typical dark fitness template.</p>
+        </div>
+        <!-- Site mockup preview -->
+        <div style="margin:0 32px 24px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.08);">
+          <!-- Browser chrome -->
+          <div style="background:#2a2a2a;padding:9px 14px;display:flex;align-items:center;gap:6px;">
+            <span style="width:9px;height:9px;background:#F87171;border-radius:50%;display:inline-block;"></span>
+            <span style="width:9px;height:9px;background:#FCD34D;border-radius:50%;display:inline-block;"></span>
+            <span style="width:9px;height:9px;background:#34D399;border-radius:50%;display:inline-block;"></span>
+            <div style="flex:1;margin-left:10px;background:#1a1a1a;border-radius:5px;height:18px;display:flex;align-items:center;padding:0 10px;">
+              <span style="font-size:10px;color:rgba(255,255,255,.3);">coleperformance.co</span>
+            </div>
+          </div>
+          <!-- Site preview -->
+          <div style="background:#F5F4EF;padding:18px 20px 22px;">
+            <!-- Nav -->
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+              <span style="font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;color:#111;letter-spacing:.04em;">COLE PERFORMANCE</span>
+              <span style="background:#166534;color:#fff;font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;letter-spacing:.04em;">BOOK A CALL</span>
+            </div>
+            <!-- Hero block -->
+            <div style="background:#111;border-radius:10px;padding:14px 16px;">
+              <p style="font-size:9px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;">Online Coaching · Men 35–50</p>
+              <p style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:8px;">Built for men who are<br><span style="color:#86EFAC;">serious about strength</span></p>
+              <div style="display:flex;gap:6px;">
+                <span style="background:#166534;color:#fff;font-size:8px;padding:4px 10px;border-radius:5px;font-weight:600;">Book Free Call</span>
+                <span style="background:transparent;color:rgba(255,255,255,.45);font-size:8px;padding:4px 10px;border-radius:5px;border:1px solid rgba(255,255,255,.15);">See Services</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:0 32px 20px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;gap:8px;">
+            <span style="background:#F5F4EF;color:#166534;font-size:11px;padding:4px 10px;border-radius:6px;font-weight:600;">#F5F4EF</span>
+            <span style="background:#166534;color:#fff;font-size:11px;padding:4px 10px;border-radius:6px;font-weight:600;">#166534</span>
+          </div>
+          <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20can%20I%20see%20the%20Cole%20Performance%20project%3F" target="_blank" style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:rgba(255,255,255,.4);text-decoration:none;">
+            Request preview
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3: Comeback Tracker -->
+      <div class="project-card">
+        <div style="padding:32px 32px 0;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+            <span class="tag tag-app">Client App</span>
+            <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#34D399;">
+              <span style="width:6px;height:6px;background:#34D399;border-radius:50%;display:inline-block;"></span>
+              Live
+            </span>
+          </div>
+          <h3 style="font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:10px;">Comeback Strong Tracker</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:24px;">Mobile-first workout tracking app for a 6-week strength program. Clients log sets and reps, track progress over time, and watch demo videos — all from their phone.</p>
+        </div>
+        <div style="height:6px;background:linear-gradient(90deg,#10B981,#34D399);"></div>
+        <div style="padding:20px 32px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;gap:8px;">
+            <span style="background:#064E3B;color:#6EE7B7;font-size:11px;padding:4px 10px;border-radius:6px;">Phase locks</span>
+            <span style="background:#1e3a5f;color:rgba(255,255,255,.4);font-size:11px;padding:4px 10px;border-radius:6px;">Progress charts</span>
+          </div>
+          <a href="https://fitbodiesbymk-pixel.github.io/comeback-tracker/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#F5782A;text-decoration:none;">
+            View live app
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 4: Over 40 Quiz -->
+      <div class="project-card">
+        <div style="padding:32px 32px 0;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+            <span class="tag tag-quiz">Lead Magnet</span>
+            <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#34D399;">
+              <span style="width:6px;height:6px;background:#34D399;border-radius:50%;display:inline-block;"></span>
+              Live
+            </span>
+          </div>
+          <h3 style="font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:10px;">The Over 40 Body Check</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:24px;">8-question lifestyle quiz with personalised result profiles, email capture, and CTA routing. Built to attract leads, qualify them, and direct them to the right coaching offer.</p>
+        </div>
+        <div style="height:6px;background:linear-gradient(90deg,#F59E0B,#FCD34D);"></div>
+        <div style="padding:20px 32px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;gap:8px;">
+            <span style="background:#451A03;color:#FDE68A;font-size:11px;padding:4px 10px;border-radius:6px;">Email capture</span>
+            <span style="background:#1e3a5f;color:rgba(255,255,255,.4);font-size:11px;padding:4px 10px;border-radius:6px;">3 result profiles</span>
+          </div>
+          <a href="https://fitbodiesbymk-pixel.github.io/over40-quiz/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#F5782A;text-decoration:none;">
+            View live quiz
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+  PROCESS
+═══════════════════════════════════════════════════ -->
+<section id="process" style="background:#0C0C14;padding:100px 0;">
+  <div class="wrap">
+    <p class="label" style="margin-bottom:10px;">How it works</p>
+    <h2 class="section-title" style="margin-bottom:16px;">Simple from start to live</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,.45);margin-bottom:64px;max-width:480px;">No lengthy briefs, no back-and-forth. Most projects go from first message to live site in under a week.</p>
+
+    <div class="process-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+
+      <div style="background:#0F0F18;border:1px solid rgba(255,255,255,.07);border-radius:24px;padding:36px;">
+        <p class="step-num" style="margin-bottom:20px;">01</p>
+        <h3 style="font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:12px;">Tell me about your business</h3>
+        <p style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;">Send me a WhatsApp message with what you do, who you serve, and what you need. No forms, no calls required to get started.</p>
+      </div>
+
+      <div style="background:#0F0F18;border:1px solid rgba(255,255,255,.07);border-radius:24px;padding:36px;position:relative;">
+        <div style="position:absolute;top:-1px;left:36px;right:36px;height:2px;background:#F5782A;border-radius:0 0 2px 2px;"></div>
+        <p class="step-num" style="margin-bottom:20px;">02</p>
+        <h3 style="font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:12px;">I build it — fast</h3>
+        <p style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;">Landing pages take 48 hours. Lead magnets 3–5 days. Full coach toolkits under 10 days. I handle design, copy, and going live.</p>
+      </div>
+
+      <div style="background:#0F0F18;border:1px solid rgba(255,255,255,.07);border-radius:24px;padding:36px;">
+        <p class="step-num" style="margin-bottom:20px;">03</p>
+        <h3 style="font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:12px;">Review, tweak, launch</h3>
+        <p style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;">You review the build, request any changes, and once you're happy I push it live. You get the full files — yours to keep forever.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+  SERVICES
+═══════════════════════════════════════════════════ -->
+<section id="services" class="section">
+  <div class="wrap">
+    <p class="label" style="margin-bottom:10px;">Packages</p>
+    <h2 class="section-title" style="margin-bottom:16px;">Simple, transparent pricing</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,.45);margin-bottom:64px;max-width:480px;">No hourly billing, no surprise costs. You know exactly what you get and what you pay — before we start.</p>
+
+    <div class="prices-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
+
+      <!-- Launch Page -->
+      <div class="price-card">
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#93C5FD;margin-bottom:20px;">Launch Page</p>
+        <div style="margin-bottom:6px;">
+          <span style="font-family:'Oswald',sans-serif;font-size:52px;font-weight:700;color:#fff;line-height:1;">$600</span>
+        </div>
+        <p style="font-size:13px;color:rgba(255,255,255,.3);margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.07);">One-time · Delivered in 48–72 hrs</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:36px;flex:1;">
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Single-page landing site
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Mobile-first, fast-loading
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Booking or WhatsApp CTA
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Hosted &amp; live on delivery
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            1 round of revisions
+          </li>
+        </ul>
+        <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27m%20interested%20in%20the%20Launch%20Page%20package" target="_blank" class="btn-secondary" style="width:100%;justify-content:center;">Get started</a>
+      </div>
+
+      <!-- Lead Magnet — Featured -->
+      <div class="price-card featured" style="position:relative;">
+        <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#F5782A;color:#fff;font-size:11px;font-weight:700;padding:5px 18px;border-radius:99px;white-space:nowrap;letter-spacing:.06em;text-transform:uppercase;">Most Popular</div>
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#FDE68A;margin-bottom:20px;">Lead Magnet</p>
+        <div style="margin-bottom:6px;">
+          <span style="font-family:'Oswald',sans-serif;font-size:52px;font-weight:700;color:#fff;line-height:1;">$1,100</span>
+        </div>
+        <p style="font-size:13px;color:rgba(255,255,255,.3);margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.07);">One-time · Delivered in 3–5 days</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:36px;flex:1;">
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Quiz or assessment tool
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Personalised results page
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Email capture built in
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Routes leads to your offer
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            2 rounds of revisions
+          </li>
+        </ul>
+        <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27m%20interested%20in%20the%20Lead%20Magnet%20package" target="_blank" class="btn-primary" style="width:100%;justify-content:center;">Get started</a>
+      </div>
+
+      <!-- Coach Toolkit -->
+      <div class="price-card">
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6EE7B7;margin-bottom:20px;">Coach Toolkit</p>
+        <div style="margin-bottom:6px;">
+          <span style="font-family:'Oswald',sans-serif;font-size:52px;font-weight:700;color:#fff;line-height:1;">$2,200</span>
+        </div>
+        <p style="font-size:13px;color:rgba(255,255,255,.3);margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.07);">One-time · Delivered in 7–10 days</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:36px;flex:1;">
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Everything in Launch Page
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Quiz or lead magnet
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Client-facing tool or app
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Full digital setup for launch
+          </li>
+          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+            <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+            Unlimited revisions
+          </li>
+        </ul>
+        <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27m%20interested%20in%20the%20Coach%20Toolkit%20package" target="_blank" class="btn-secondary" style="width:100%;justify-content:center;">Get started</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+  ABOUT
+═══════════════════════════════════════════════════ -->
+<section id="about" style="background:#0C0C14;padding:100px 0;">
+  <div class="wrap">
+    <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:stretch;">
+
+      <!-- Photo -->
+      <div class="photo-frame" style="height:100%;min-height:520px;">
+        <img src="493582018_2070973453312498_6904377668852075950_n.jpg" alt="MK in his home gym" />
+      </div>
+
+      <!-- Bio -->
+      <div style="padding-top:8px;">
+        <p class="label" style="margin-bottom:14px;">Who's behind BuiltByMK</p>
+        <h2 class="section-title" style="margin-bottom:28px;">A coach who builds<br>for coaches</h2>
+
+        <p style="font-size:16px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:18px;">
+          I'm MK — a fitness coach based in Doha, Qatar, working with the over-40 crowd. People who are too busy, too sore, or too stuck in the wrong routine to figure out where to start. Through <strong style="color:#fff;">Fitbodies by MK</strong>, I coach clients through strength training, body recomposition, and building consistency that actually holds after 40.
+        </p>
+        <p style="font-size:16px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:18px;">
+          After building my own coaching programs, client tools, and websites from scratch, I realised most coaches were either overpaying agencies or making do with something that didn't represent them. So I started <strong style="color:#fff;">BuiltByMK</strong> — to help other coaches get online properly, fast, without the nonsense.
+        </p>
+        <p style="font-size:16px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:40px;">
+          Every build comes from actually knowing what coaches need and what their clients respond to. You work directly with me — not a team, not a template, not an account manager. Just straight, focused work from first message to going live.
+        </p>
+
+        <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27d%20like%20to%20chat%20about%20a%20project" target="_blank" class="btn-primary">Let's talk →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+  CTA BAND
+═══════════════════════════════════════════════════ -->
+<section style="padding:100px 24px;text-align:center;">
+  <div style="max-width:680px;margin:0 auto;">
+    <p class="label" style="margin-bottom:20px;">Ready to get started?</p>
+    <h2 style="font-family:'Oswald',sans-serif;font-size:clamp(36px,6vw,64px);font-weight:700;color:#fff;line-height:1.05;margin-bottom:20px;">
+      Stop losing clients to a<br><span style="color:#F5782A;">weak online presence.</span>
+    </h2>
+    <p style="font-size:17px;color:rgba(255,255,255,.5);margin-bottom:44px;line-height:1.7;">
+      Tell me what you need. I'll tell you how I can help — and what it'll cost. No sales pitch, no pressure. Just a straight conversation on WhatsApp.
+    </p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
+      <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27m%20ready%20to%20start%20a%20project%20with%20BuiltByMK" target="_blank" class="btn-primary" style="font-size:18px;padding:18px 36px;display:inline-flex;align-items:center;gap:10px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.122 1.522 5.858L0 24l6.335-1.508A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.368l-.36-.213-3.76.895.952-3.653-.235-.376A9.782 9.782 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+        Message on WhatsApp
+      </a>
+      <a href="mailto:coachmk@fitbodiesbymk.com" class="btn-primary" style="font-size:18px;padding:18px 36px;display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        Send an Email
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+  FOOTER
+═══════════════════════════════════════════════════ -->
+<footer style="border-top:1px solid rgba(255,255,255,.06);padding:40px 24px;">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+    <span style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:#fff;">Built<span style="color:#F5782A;">By</span>MK</span>
+    <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+      <a href="mailto:coachmk@fitbodiesbymk.com" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;display:flex;align-items:center;gap:7px;transition:color .15s;">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        coachmk@fitbodiesbymk.com
+      </a>
+      <p style="font-size:13px;color:rgba(255,255,255,.2);">© <span id="yr"></span> BuiltByMK</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+var ham   = document.getElementById('hamburger');
+var menu  = document.getElementById('mobile-menu');
+var dNav  = document.getElementById('desktop-nav');
+
+function setNav() {
+  var mobile = window.innerWidth < 768;
+  ham.style.display   = mobile ? 'flex' : 'none';
+  dNav.style.display  = mobile ? 'none' : 'flex';
+  if (!mobile) menu.classList.remove('open');
+}
+setNav();
+window.addEventListener('resize', setNav);
+
+ham.addEventListener('click', function(){ menu.classList.toggle('open'); });
+menu.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click', function(){ menu.classList.remove('open'); });
+});
+</script>
+</body>
+</html>
