@@ -182,9 +182,9 @@
         <label class="field-label" for="package">Package you've selected <span class="req">*</span></label>
         <select id="package" name="package" required>
           <option value="" disabled selected>Select a package</option>
-          <option value="Launch Page — $300">Launch Page — $300</option>
-          <option value="Lead Magnet — $550">Lead Magnet — $550</option>
-          <option value="Coach Toolkit — $1,100">Coach Toolkit — $1,100</option>
+          <option value="launch">Launch Page — $300 (deposit $150)</option>
+          <option value="lead">Lead Magnet — $550 (deposit $275)</option>
+          <option value="toolkit">Coach Toolkit — $1,100 (deposit $550)</option>
         </select>
       </div>
     </div>
@@ -336,21 +336,38 @@
     <div class="submit-section">
       <h3 class="submit-title">Ready to send?</h3>
       <p class="submit-sub">Once you submit, MK will review your brief and be in touch within 24 hours to confirm everything and get started.</p>
-      <button type="submit" class="btn-submit" id="submit-btn">Send My Brief →</button>
+      <button type="submit" class="btn-submit" id="submit-btn">Submit Brief &amp; Get Payment Link →</button>
       <p class="submit-note" id="submit-error" style="color:#f87171;display:none;">Please fill in all required fields before submitting.</p>
-      <p class="submit-note" style="margin-top:12px;">Submitted details go directly to MK · Replies via WhatsApp or email</p>
+      <p class="submit-note" style="margin-top:12px;">Step 1 of 2 — After submitting you'll get your deposit payment link to secure your start date.</p>
     </div>
 
   </form>
   </div>
 
   <!-- SUCCESS -->
-  <div class="success-screen" id="success">
-    <div class="success-icon">
-      <svg width="28" height="28" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+  <div class="success-screen" id="success" style="padding:60px 0;">
+    <!-- Step 1 done -->
+    <div style="display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:40px;">
+      <div style="width:32px;height:32px;background:#10b981;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="16" height="16" fill="none" stroke="#fff" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <span style="font-family:'Roboto Mono',monospace;font-size:12px;color:#10b981;letter-spacing:.1em;">BRIEF RECEIVED</span>
     </div>
-    <h2 class="success-title">Brief received!</h2>
-    <p class="success-sub">MK will review everything and get back to you within 24 hours. Check your email for a confirmation.</p>
+
+    <!-- Step 2: pay deposit -->
+    <div style="background:rgba(13,32,49,.7);border:1px solid rgba(55,189,248,.2);border-radius:24px;padding:40px 32px;max-width:520px;margin:0 auto;text-align:center;backdrop-filter:blur(12px);">
+      <p style="font-family:'Roboto Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:#37bdf8;margin-bottom:16px;">Step 2 of 2</p>
+      <h2 style="font-size:26px;font-weight:300;color:#fff;margin-bottom:12px;">Pay your deposit to<br>secure your start date</h2>
+      <p style="font-size:14px;color:#8ba3bc;line-height:1.7;margin-bottom:32px;">Your brief is in MK's inbox. Pay the 50% deposit now and work begins as soon as it's confirmed. The balance is only due once you're happy with the final site.</p>
+
+      <a id="stripe-link" href="#" target="_blank" style="display:block;background:#37bdf8;color:#07121c;font-family:'Montserrat',sans-serif;font-size:17px;font-weight:700;padding:17px 32px;border-radius:12px;text-decoration:none;margin-bottom:16px;box-shadow:0 0 24px rgba(55,189,248,.3);transition:box-shadow .15s;">
+        Pay <span id="deposit-amount"></span> Deposit →
+      </a>
+
+      <p style="font-family:'Roboto Mono',monospace;font-size:11px;color:rgba(55,189,248,.4);letter-spacing:.08em;">Secure payment via Stripe · Card or Apple/Google Pay</p>
+    </div>
+
+    <p style="font-size:13px;color:#8ba3bc;margin-top:28px;">Questions? <a href="https://wa.me/97452086673" target="_blank" style="color:#37bdf8;text-decoration:none;">Message MK on WhatsApp</a></p>
   </div>
 
   <footer>
@@ -363,62 +380,77 @@
 </div><!-- /wrap -->
 
 <script>
-var form = document.getElementById('intake-form');
-var formWrap = document.getElementById('form-wrap');
-var success = document.getElementById('success');
+var STRIPE = {
+  launch:  { link: 'https://buy.stripe.com/00w4gy9rd9HzeCE5UQ53O00', amount: '$150' },
+  lead:    { link: 'https://buy.stripe.com/cNicN45aX8Dv2TWbfa53O01', amount: '$275' },
+  toolkit: { link: 'https://buy.stripe.com/14AbJ0avhbPHfGIab653O02', amount: '$550' }
+};
+
+var form      = document.getElementById('intake-form');
+var formWrap  = document.getElementById('form-wrap');
+var success   = document.getElementById('success');
 var submitBtn = document.getElementById('submit-btn');
+var pkgSelect = document.getElementById('package');
+
+// Pre-select package from URL param e.g. ?pkg=launch
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var pkg = params.get('pkg');
+  if (pkg && STRIPE[pkg]) pkgSelect.value = pkg;
+})();
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
 
-  // Basic validation
   var required = form.querySelectorAll('[required]');
   var allFilled = true;
   required.forEach(function(el) {
-    if (!el.value.trim()) {
-      el.style.borderColor = 'rgba(248,113,113,.5)';
-      allFilled = false;
-    } else {
-      el.style.borderColor = '';
-    }
+    if (!el.value.trim()) { el.style.borderColor = 'rgba(248,113,113,.5)'; allFilled = false; }
+    else el.style.borderColor = '';
   });
 
   if (!allFilled) {
     document.getElementById('submit-error').style.display = 'block';
-    var firstEmpty = form.querySelector('[required]:invalid, [required][value=""]');
-    if (firstEmpty) firstEmpty.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    form.querySelector('[required]:not([value]):invalid, [required][value=""]');
+    var firstBad = Array.from(required).find(function(el){ return !el.value.trim(); });
+    if (firstBad) firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Sending…';
 
-  var data = new FormData(form);
+  // Capture package before submit
+  var selectedPkg = pkgSelect.value;
 
   fetch(form.action, {
     method: 'POST',
-    body: data,
+    body: new FormData(form),
     headers: { 'Accept': 'application/json' }
   })
   .then(function(res) {
     if (res.ok) {
+      // Wire up the Stripe link for the selected package
+      var stripe = STRIPE[selectedPkg] || STRIPE['launch'];
+      document.getElementById('stripe-link').href = stripe.link;
+      document.getElementById('deposit-amount').textContent = stripe.amount;
+
       formWrap.style.display = 'none';
       success.style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Send My Brief →';
-      alert('Something went wrong. Please try again or message MK directly on WhatsApp.');
+      submitBtn.textContent = 'Submit Brief & Get Payment Link →';
+      alert('Something went wrong. Please try again or message MK on WhatsApp.');
     }
   })
   .catch(function() {
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Send My Brief →';
+    submitBtn.textContent = 'Submit Brief & Get Payment Link →';
     alert('Could not connect. Please check your internet and try again.');
   });
 });
 
-// Clear red border on input
 form.querySelectorAll('input, select, textarea').forEach(function(el) {
   el.addEventListener('input', function() { this.style.borderColor = ''; });
 });
