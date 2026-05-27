@@ -15,7 +15,7 @@
 
     /* ── TYPOGRAPHY ── */
     .label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:#9CA3AF;}
-    .display{font-family:'Montserrat',sans-serif;font-size:clamp(48px,8vw,88px);line-height:.97;font-weight:800;color:#111;}
+    .display{font-family:'Montserrat',sans-serif;font-size:clamp(40px,7vw,80px);line-height:1.06;font-weight:800;color:#111;}
     .section-title{font-family:'Montserrat',sans-serif;font-size:clamp(34px,5vw,52px);font-weight:700;color:#111;line-height:1.05;}
 
     /* ── LAYOUT ── */
@@ -107,7 +107,7 @@
       cursor:pointer;transition:all .18s;flex-shrink:0;
     }
     .carousel-btn:hover{background:#EDE7DD;border-color:#D1D5DB;color:#1A1A1A;}
-    @media(max-width:768px){.work-slide{flex:0 0 90%;}}
+    @media(max-width:768px){.work-slide{flex:0 0 83%;}}
 
     /* ── PHOTO FRAME ── */
     .photo-frame{
@@ -133,7 +133,9 @@
       .prices-grid{grid-template-columns:1fr!important;}
       .process-grid{grid-template-columns:1fr!important;}
       .about-grid{grid-template-columns:1fr!important;}
+      .about-grid .photo-frame{min-height:320px!important;height:320px!important;}
       .stats-grid{grid-template-columns:repeat(2,1fr)!important;}
+      .prices-grid .price-card.featured{margin-top:20px;}
     }
   </style>
 </head>
@@ -142,7 +144,7 @@
 <!-- ════════════════════════════════════════════════
   NAV
 ═══════════════════════════════════════════════════ -->
-<header style="position:sticky;top:0;z-index:50;background:rgba(250,250,248,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.07);">
+<header style="position:sticky;top:0;z-index:50;background:rgba(245,239,230,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.07);">
   <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;height:68px;">
     <a href="#" style="font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:#111;text-decoration:none;">
       Built<span style="color:#F5782A;">By</span>MK
@@ -199,8 +201,8 @@
             <p style="font-size:12px;color:#9CA3AF;margin-top:4px;">Avg. turnaround</p>
           </div>
           <div style="background:#F5EFE6;padding:22px 18px;">
-            <p style="font-family:'Montserrat',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">4</p>
-            <p style="font-size:12px;color:#9CA3AF;margin-top:4px;">Live projects</p>
+            <p style="font-family:'Montserrat',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">100%</p>
+            <p style="font-size:12px;color:#9CA3AF;margin-top:4px;">Client owned</p>
           </div>
           <div style="background:#F5EFE6;padding:22px 18px;">
             <p style="font-family:'Montserrat',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">$0</p>
@@ -300,9 +302,9 @@
                 </div>
               </div>
               <!-- Card info -->
-              <div style="padding:28px 32px 34px;border-top:1px solid rgba(255,255,255,.07);">
+              <div style="padding:28px 32px 34px;border-top:1px solid #E5E7EB;">
                 <span class="tag tag-page" style="margin-bottom:16px;display:inline-flex;">Landing Page</span>
-                <h3 style="font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">Beyond the Scale</h3>
+                <h3 style="font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:#111;margin-bottom:8px;">Beyond the Scale</h3>
                 <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:26px;">Telehealth weight loss landing page for a GLP-1 medical coaching practice. Dark premium look, Calendly booking, and a lead capture funnel.</p>
                 <a href="https://beyondthescale.site" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:13px 26px;">View Live Site →</a>
               </div>
@@ -337,9 +339,9 @@
                 </div>
               </div>
               <!-- Card info -->
-              <div style="padding:28px 32px 34px;border-top:1px solid rgba(255,255,255,.07);">
+              <div style="padding:28px 32px 34px;border-top:1px solid #E5E7EB;">
                 <span class="tag tag-page" style="margin-bottom:16px;display:inline-flex;">Landing Page</span>
-                <h3 style="font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">Cole Performance</h3>
+                <h3 style="font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:#111;margin-bottom:8px;">Cole Performance</h3>
                 <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:26px;">Men's strength and conditioning coaching site. Editorial cream-and-green aesthetic — deliberately distinct from the typical dark fitness template.</p>
                 <a href="https://fitbodiesbymk-pixel.github.io/cole-performance/" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:13px 26px;">View Live Site →</a>
               </div>
@@ -398,9 +400,9 @@
                 </div>
               </div>
               <!-- Card info -->
-              <div style="padding:28px 32px 34px;border-top:1px solid rgba(255,255,255,.07);">
+              <div style="padding:28px 32px 34px;border-top:1px solid #E5E7EB;">
                 <span class="tag tag-app" style="margin-bottom:16px;display:inline-flex;">Client App</span>
-                <h3 style="font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">Comeback Strong Tracker</h3>
+                <h3 style="font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:#111;margin-bottom:8px;">Comeback Strong Tracker</h3>
                 <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:26px;">Mobile-first workout tracking app for a 6-week program. Clients log sets, track progress session by session, and unlock each phase as they complete it.</p>
                 <a href="https://fitbodiesbymk-pixel.github.io/comeback-tracker/" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:13px 26px;">View Live App →</a>
               </div>
@@ -449,9 +451,9 @@
                 </div>
               </div>
               <!-- Card info -->
-              <div style="padding:28px 32px 34px;border-top:1px solid rgba(255,255,255,.07);">
+              <div style="padding:28px 32px 34px;border-top:1px solid #E5E7EB;">
                 <span class="tag tag-quiz" style="margin-bottom:16px;display:inline-flex;">Lead Magnet</span>
-                <h3 style="font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">The Over 40 Body Check</h3>
+                <h3 style="font-family:'Montserrat',sans-serif;font-size:26px;font-weight:700;color:#111;margin-bottom:8px;">The Over 40 Body Check</h3>
                 <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:26px;">8-question lifestyle quiz with personalised result profiles, email capture, and CTA routing — built to attract, qualify, and convert the right clients.</p>
                 <a href="https://fitbodiesbymk-pixel.github.io/over40-quiz/" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:13px 26px;">View Live Quiz →</a>
               </div>
@@ -656,7 +658,7 @@
 <!-- ════════════════════════════════════════════════
   CTA BAND
 ═══════════════════════════════════════════════════ -->
-<section style="padding:100px 24px;text-align:center;">
+<section style="padding:100px 24px;text-align:center;background:#EDE7DD;">
   <div style="max-width:680px;margin:0 auto;">
     <p class="label" style="margin-bottom:20px;">Ready to get started?</p>
     <h2 style="font-family:'Montserrat',sans-serif;font-size:clamp(36px,6vw,64px);font-weight:800;color:#111;line-height:1.05;margin-bottom:20px;">
