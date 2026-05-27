@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Start Your Project — BuiltByMK</title>
+  <meta name="description" content="Fill in your project brief and we'll get started building your coaching website."/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Montserrat',sans-serif;background:#07121c;color:#d1dce8;min-height:100vh;overflow-x:hidden;}
+    body::before{content:'';position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at top,#19506c 0%,#07121c 60%);pointer-events:none;}
+    body::after{content:'';position:fixed;inset:0;z-index:-1;background:linear-gradient(to right,rgba(55,189,248,.04) 1px,transparent 1px) 0 0/60px 60px,linear-gradient(to bottom,rgba(55,189,248,.04) 1px,transparent 1px) 0 0/60px 60px;pointer-events:none;}
+    .wrap{max-width:680px;margin:0 auto;padding:0 24px;}
+
+    /* ── HEADER ── */
+    header{padding:28px 0;border-bottom:1px solid rgba(55,189,248,.1);margin-bottom:56px;}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;}
+    .logo{font-size:20px;font-weight:700;color:#fff;text-decoration:none;}
+    .logo span{color:#37bdf8;}
+    .logo-sub{font-family:'Roboto Mono',monospace;font-size:10px;color:rgba(55,189,248,.45);letter-spacing:.15em;display:block;margin-top:2px;}
+
+    /* ── HERO ── */
+    .page-hero{margin-bottom:56px;}
+    .page-eyebrow{font-family:'Roboto Mono',monospace;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.22em;color:#37bdf8;margin-bottom:16px;}
+    .page-title{font-size:clamp(32px,6vw,52px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:16px;}
+    .page-sub{font-size:16px;color:#8ba3bc;line-height:1.75;max-width:520px;}
+    .time-badge{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-family:'Roboto Mono',monospace;font-size:11px;color:rgba(55,189,248,.5);letter-spacing:.1em;background:rgba(55,189,248,.06);border:1px solid rgba(55,189,248,.15);padding:6px 14px;border-radius:99px;}
+
+    /* ── FORM SECTIONS ── */
+    .form-section{margin-bottom:48px;}
+    .section-label{font-family:'Roboto Mono',monospace;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:#37bdf8;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid rgba(55,189,248,.1);display:flex;align-items:center;gap:10px;}
+    .section-num{font-size:14px;font-weight:500;color:rgba(55,189,248,.3);}
+
+    /* ── FORM FIELDS ── */
+    .field{margin-bottom:22px;}
+    .field-label{font-size:14px;font-weight:600;color:#d1dce8;display:block;margin-bottom:6px;}
+    .field-hint{font-size:12px;color:#8ba3bc;margin-bottom:8px;line-height:1.5;}
+    .field input,.field select,.field textarea{
+      width:100%;
+      background:rgba(13,32,49,.7);
+      border:1px solid rgba(55,189,248,.18);
+      border-radius:12px;
+      padding:14px 16px;
+      font-family:'Montserrat',sans-serif;
+      font-size:15px;
+      color:#d1dce8;
+      outline:none;
+      transition:border-color .15s,box-shadow .15s;
+    }
+    .field input:focus,.field select:focus,.field textarea:focus{
+      border-color:rgba(55,189,248,.5);
+      box-shadow:0 0 0 3px rgba(55,189,248,.07);
+    }
+    .field input::placeholder,.field textarea::placeholder{color:rgba(139,163,188,.45);}
+    .field select option{background:#0d2031;}
+    .field textarea{resize:vertical;min-height:100px;line-height:1.6;}
+
+    /* ── RADIO GRID ── */
+    .radio-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+    .radio-option{position:relative;}
+    .radio-option input[type="radio"]{position:absolute;opacity:0;width:0;height:0;}
+    .radio-label{
+      display:flex;flex-direction:column;
+      background:rgba(13,32,49,.7);
+      border:1px solid rgba(55,189,248,.18);
+      border-radius:12px;padding:16px;
+      cursor:pointer;transition:border-color .15s,background .15s;
+    }
+    .radio-option input:checked + .radio-label{
+      border-color:#37bdf8;
+      background:rgba(55,189,248,.08);
+    }
+    .radio-title{font-size:14px;font-weight:600;color:#d1dce8;margin-bottom:3px;}
+    .radio-desc{font-size:12px;color:#8ba3bc;}
+
+    /* ── PHOTO UPLOAD BOX ── */
+    .upload-box{
+      background:rgba(13,32,49,.5);
+      border:1px dashed rgba(55,189,248,.3);
+      border-radius:16px;
+      padding:32px 24px;
+      text-align:center;
+    }
+    .upload-icon{width:44px;height:44px;background:rgba(55,189,248,.08);border:1px solid rgba(55,189,248,.2);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+    .upload-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:8px;}
+    .upload-sub{font-size:13px;color:#8ba3bc;line-height:1.6;margin-bottom:20px;}
+    .upload-steps{text-align:left;display:inline-block;}
+    .upload-step{font-size:13px;color:#8ba3bc;padding:4px 0;display:flex;gap:10px;align-items:flex-start;}
+    .upload-step-num{font-family:'Roboto Mono',monospace;font-size:11px;color:#37bdf8;flex-shrink:0;margin-top:1px;}
+    .upload-input{margin-top:20px;}
+
+    /* ── REQUIRED MARK ── */
+    .req{color:#37bdf8;margin-left:2px;}
+
+    /* ── SUBMIT ── */
+    .submit-section{background:rgba(13,32,49,.6);border:1px solid rgba(55,189,248,.15);border-radius:20px;padding:36px;margin-bottom:60px;text-align:center;backdrop-filter:blur(12px);}
+    .submit-title{font-size:18px;font-weight:300;color:#fff;margin-bottom:8px;}
+    .submit-sub{font-size:14px;color:#8ba3bc;margin-bottom:28px;}
+    .btn-submit{
+      background:#37bdf8;color:#07121c;
+      font-family:'Montserrat',sans-serif;font-size:17px;font-weight:700;
+      padding:17px 40px;border-radius:12px;border:none;cursor:pointer;
+      width:100%;transition:box-shadow .15s,transform .15s;
+      box-shadow:0 0 24px rgba(55,189,248,.3);
+    }
+    .btn-submit:hover{box-shadow:0 0 36px rgba(55,189,248,.5);transform:translateY(-1px);}
+    .btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+    .submit-note{font-family:'Roboto Mono',monospace;font-size:11px;color:rgba(55,189,248,.4);letter-spacing:.08em;margin-top:16px;}
+
+    /* ── SUCCESS STATE ── */
+    .success-screen{display:none;text-align:center;padding:80px 24px;}
+    .success-icon{width:64px;height:64px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;}
+    .success-title{font-size:28px;font-weight:300;color:#fff;margin-bottom:12px;}
+    .success-sub{font-size:16px;color:#8ba3bc;line-height:1.7;max-width:440px;margin:0 auto;}
+
+    /* ── ERROR ── */
+    .error-msg{font-size:13px;color:#f87171;margin-top:8px;display:none;}
+
+    /* ── FOOTER ── */
+    footer{border-top:1px solid rgba(55,189,248,.08);padding:28px 0;margin-top:0;}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+    .footer-logo{font-size:16px;font-weight:700;color:#fff;}
+    .footer-logo span{color:#37bdf8;}
+    .footer-note{font-family:'Roboto Mono',monospace;font-size:11px;color:rgba(55,189,248,.35);letter-spacing:.08em;}
+
+    @media(max-width:600px){
+      .radio-grid{grid-template-columns:1fr;}
+      .footer-inner{flex-direction:column;text-align:center;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="header-inner">
+      <div>
+        <span class="logo">Built<span>By</span>MK</span>
+        <span class="logo-sub">CLIENT INTAKE FORM</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <p class="page-eyebrow">Let's get started</p>
+    <h1 class="page-title">Tell me about<br>your project</h1>
+    <p class="page-sub">The more detail you give here, the less back-and-forth we'll have — and the faster your site gets built. Take your time, be specific.</p>
+    <div class="time-badge">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>
+      Takes about 10 minutes
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div id="form-wrap">
+  <form id="intake-form" action="https://formspree.io/f/xeedpblq" method="POST">
+
+    <!-- ── SECTION 1: About You ── -->
+    <div class="form-section">
+      <div class="section-label"><span class="section-num">01</span> About You</div>
+
+      <div class="field">
+        <label class="field-label" for="client-name">Your name <span class="req">*</span></label>
+        <input type="text" id="client-name" name="client_name" placeholder="Sarah Johnson" required/>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="client-email">Your email <span class="req">*</span></label>
+        <input type="email" id="client-email" name="client_email" placeholder="sarah@example.com" required/>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="business-name">Business name <span class="req">*</span></label>
+        <input type="text" id="business-name" name="business_name" placeholder="Beyond the Scale" required/>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="package">Package you've selected <span class="req">*</span></label>
+        <select id="package" name="package" required>
+          <option value="" disabled selected>Select a package</option>
+          <option value="Launch Page — $300">Launch Page — $300</option>
+          <option value="Lead Magnet — $550">Lead Magnet — $550</option>
+          <option value="Coach Toolkit — $1,100">Coach Toolkit — $1,100</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ── SECTION 2: Your Business ── -->
+    <div class="form-section">
+      <div class="section-label"><span class="section-num">02</span> Your Business</div>
+
+      <div class="field">
+        <label class="field-label" for="business-desc">What do you do? <span class="req">*</span></label>
+        <p class="field-hint">2–3 sentences. Pretend you're explaining it to a stranger at a coffee shop.</p>
+        <textarea id="business-desc" name="business_description" placeholder="I help women over 40 lose weight and build strength through personalised coaching programs. I work online with clients across the UK and Australia." required></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="audience">Who is your ideal client? <span class="req">*</span></label>
+        <p class="field-hint">Be specific — age, situation, what they're struggling with, what they want.</p>
+        <textarea id="audience" name="target_audience" placeholder="Women 40–60 who have tried diets before, are frustrated with slow results, and want a sustainable approach without giving up everything they enjoy." required></textarea>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="cta">What do you want visitors to do? <span class="req">*</span></label>
+        <p class="field-hint">The main action on your site — pick one.</p>
+        <select id="cta" name="main_cta" required>
+          <option value="" disabled selected>Select the main action</option>
+          <option>Book a free discovery call (Calendly)</option>
+          <option>Message me on WhatsApp</option>
+          <option>Buy a product or program</option>
+          <option>Sign up to my email list</option>
+          <option>Fill in an application form</option>
+          <option>Other (explain in notes at the end)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="cta-link">Your booking / contact link</label>
+        <p class="field-hint">Calendly URL, WhatsApp number, product page — wherever you want them to land.</p>
+        <input type="text" id="cta-link" name="cta_link" placeholder="https://calendly.com/yourname or +974 5208 6673"/>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="tagline">Tagline <span style="font-weight:400;color:#8ba3bc;">(optional)</span></label>
+        <p class="field-hint">A short punchy line that sums up what you do. Leave blank and I'll write one based on your brief.</p>
+        <input type="text" id="tagline" name="tagline" placeholder="e.g. Strength after 40. No gimmicks."/>
+      </div>
+    </div>
+
+    <!-- ── SECTION 3: Look & Feel ── -->
+    <div class="form-section">
+      <div class="section-label"><span class="section-num">03</span> Look &amp; Feel</div>
+
+      <div class="field">
+        <label class="field-label">How should your site feel? <span class="req">*</span></label>
+        <p class="field-hint">Pick the one that best fits your brand.</p>
+        <div class="radio-grid">
+          <div class="radio-option">
+            <input type="radio" name="vibe" id="v1" value="Bold and powerful — strong typography, high contrast, no fluff" required/>
+            <label class="radio-label" for="v1">
+              <span class="radio-title">Bold &amp; powerful</span>
+              <span class="radio-desc">Strong type, high contrast, no fluff</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="vibe" id="v2" value="Clean and professional — minimal, trustworthy, polished"/>
+            <label class="radio-label" for="v2">
+              <span class="radio-title">Clean &amp; professional</span>
+              <span class="radio-desc">Minimal, trustworthy, polished</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="vibe" id="v3" value="Warm and approachable — friendly, personal, inviting"/>
+            <label class="radio-label" for="v3">
+              <span class="radio-title">Warm &amp; approachable</span>
+              <span class="radio-desc">Friendly, personal, inviting</span>
+            </label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="vibe" id="v4" value="Premium and editorial — sophisticated, luxury feel, quiet confidence"/>
+            <label class="radio-label" for="v4">
+              <span class="radio-title">Premium &amp; editorial</span>
+              <span class="radio-desc">Sophisticated, luxury, quiet confidence</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="colours">Brand colours <span style="font-weight:400;color:#8ba3bc;">(optional)</span></label>
+        <p class="field-hint">Hex codes if you have them (e.g. #F5782A). Or describe them (e.g. "deep navy and gold"). Leave blank and I'll choose based on your vibe.</p>
+        <input type="text" id="colours" name="brand_colours" placeholder="e.g. #1E3A5F and #D4A853 — or leave blank"/>
+      </div>
+
+      <div class="field">
+        <label class="field-label" for="inspo">Any websites you like the look of? <span style="font-weight:400;color:#8ba3bc;">(optional)</span></label>
+        <p class="field-hint">Doesn't have to be a coaching site — anything whose design you like. Paste the URLs.</p>
+        <textarea id="inspo" name="inspiration_sites" placeholder="e.g. https://example.com &#10;I like how clean and minimal it is, especially the hero section." style="min-height:80px;"></textarea>
+      </div>
+    </div>
+
+    <!-- ── SECTION 4: Content ── -->
+    <div class="form-section">
+      <div class="section-label"><span class="section-num">04</span> Content &amp; Copy</div>
+
+      <div class="field">
+        <label class="field-label" for="copy">Any copy you want included <span style="font-weight:400;color:#8ba3bc;">(optional)</span></label>
+        <p class="field-hint">Testimonials, specific sentences you love, your story, program details, pricing — paste anything here. I'll work it in. If you leave this blank, I'll write copy based on your brief.</p>
+        <textarea id="copy" name="copy_content" placeholder="e.g. Testimonial from Jane: 'I lost 12kg in 3 months and actually enjoyed the process...' &#10;&#10;My program: 12-week online coaching, weekly check-ins, custom meal and training plan." style="min-height:120px;"></textarea>
+      </div>
+
+      <!-- PHOTOS -->
+      <div class="field">
+        <label class="field-label">Your photos <span style="font-weight:400;color:#8ba3bc;">(optional but recommended)</span></label>
+        <div class="upload-box">
+          <div class="upload-icon">
+            <svg width="20" height="20" fill="none" stroke="#37bdf8" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+          <p class="upload-title">Share your photos via Google Drive</p>
+          <p class="upload-sub">Upload your photos to Google Drive, then share the folder link below. This keeps quality high and saves your phone storage.</p>
+          <div class="upload-steps">
+            <div class="upload-step"><span class="upload-step-num">1</span><span>Open Google Drive on your phone or computer</span></div>
+            <div class="upload-step"><span class="upload-step-num">2</span><span>Create a folder called your business name and upload your photos</span></div>
+            <div class="upload-step"><span class="upload-step-num">3</span><span>Right-click the folder → Share → "Anyone with the link can view"</span></div>
+            <div class="upload-step"><span class="upload-step-num">4</span><span>Copy and paste the link in the box below</span></div>
+          </div>
+          <div class="upload-input">
+            <input type="url" name="photos_link" placeholder="https://drive.google.com/drive/folders/..." style="text-align:left;"/>
+          </div>
+        </div>
+        <p class="field-hint" style="margin-top:10px;">No photos? No problem. I'll use professional placeholders until you're ready.</p>
+      </div>
+    </div>
+
+    <!-- ── SECTION 5: Final Notes ── -->
+    <div class="form-section">
+      <div class="section-label"><span class="section-num">05</span> Anything Else</div>
+
+      <div class="field">
+        <label class="field-label" for="extra">Anything else I should know?</label>
+        <p class="field-hint">Deadlines, specific features you need, things you definitely don't want, questions you have.</p>
+        <textarea id="extra" name="extra_notes" placeholder="e.g. I need this live before the 1st — I'm launching a challenge. Also, please don't use purple anywhere." style="min-height:100px;"></textarea>
+      </div>
+
+      <!-- Hidden fields -->
+      <input type="hidden" name="_subject" value="New BuiltByMK Project Brief"/>
+      <input type="text" name="_gotcha" style="display:none;"/>
+    </div>
+
+    <!-- ── SUBMIT ── -->
+    <div class="submit-section">
+      <h3 class="submit-title">Ready to send?</h3>
+      <p class="submit-sub">Once you submit, MK will review your brief and be in touch within 24 hours to confirm everything and get started.</p>
+      <button type="submit" class="btn-submit" id="submit-btn">Send My Brief →</button>
+      <p class="submit-note" id="submit-error" style="color:#f87171;display:none;">Please fill in all required fields before submitting.</p>
+      <p class="submit-note" style="margin-top:12px;">Submitted details go directly to MK · Replies via WhatsApp or email</p>
+    </div>
+
+  </form>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="success">
+    <div class="success-icon">
+      <svg width="28" height="28" fill="none" stroke="#10b981" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h2 class="success-title">Brief received!</h2>
+    <p class="success-sub">MK will review everything and get back to you within 24 hours. Check your email for a confirmation.</p>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Built<span>By</span>MK</span>
+      <span class="footer-note">Questions? WhatsApp +974 5208 6673</span>
+    </div>
+  </footer>
+
+</div><!-- /wrap -->
+
+<script>
+var form = document.getElementById('intake-form');
+var formWrap = document.getElementById('form-wrap');
+var success = document.getElementById('success');
+var submitBtn = document.getElementById('submit-btn');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // Basic validation
+  var required = form.querySelectorAll('[required]');
+  var allFilled = true;
+  required.forEach(function(el) {
+    if (!el.value.trim()) {
+      el.style.borderColor = 'rgba(248,113,113,.5)';
+      allFilled = false;
+    } else {
+      el.style.borderColor = '';
+    }
+  });
+
+  if (!allFilled) {
+    document.getElementById('submit-error').style.display = 'block';
+    var firstEmpty = form.querySelector('[required]:invalid, [required][value=""]');
+    if (firstEmpty) firstEmpty.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  var data = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(res) {
+    if (res.ok) {
+      formWrap.style.display = 'none';
+      success.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send My Brief →';
+      alert('Something went wrong. Please try again or message MK directly on WhatsApp.');
+    }
+  })
+  .catch(function() {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send My Brief →';
+    alert('Could not connect. Please check your internet and try again.');
+  });
+});
+
+// Clear red border on input
+form.querySelectorAll('input, select, textarea').forEach(function(el) {
+  el.addEventListener('input', function() { this.style.borderColor = ''; });
+});
+</script>
+
+</body>
+</html>
