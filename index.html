@@ -85,6 +85,7 @@
     /* ── MARQUEE ── */
     .marquee-track{display:flex;gap:48px;animation:scroll 22s linear infinite;white-space:nowrap;}
     @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @media(prefers-reduced-motion:reduce){.marquee-track{animation:none;}}
     .marquee-item{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;color:rgba(0,0,0,.14);text-transform:uppercase;letter-spacing:.12em;display:flex;align-items:center;gap:48px;}
     .marquee-item::after{content:'·';color:rgba(245,120,42,.5);}
 
@@ -151,7 +152,7 @@
     </a>
     <nav id="desktop-nav" style="display:flex;align-items:center;gap:36px;">
       <a href="#work"     class="nav-link">Work</a>
-      <a href="#services" class="nav-link">Pricing</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
       <a href="#process"  class="nav-link">Process</a>
       <a href="#about"    class="nav-link">About</a>
       <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27d%20like%20to%20start%20a%20project" target="_blank" class="btn-primary" style="padding:10px 22px;font-size:15px;box-shadow:none;">Start a Project</a>
@@ -162,7 +163,7 @@
   </div>
   <div id="mobile-menu" style="border-top:1px solid rgba(0,0,0,.07);padding:20px 24px;gap:20px;">
     <a href="#work"     class="nav-link" style="font-size:16px;">Work</a>
-    <a href="#services" class="nav-link" style="font-size:16px;">Services</a>
+    <a href="#pricing" class="nav-link" style="font-size:16px;">Services</a>
     <a href="#process"  class="nav-link" style="font-size:16px;">Process</a>
     <a href="#about"    class="nav-link" style="font-size:16px;">About</a>
     <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27d%20like%20to%20start%20a%20project" target="_blank" class="btn-primary" style="justify-content:center;">Start a Project</a>
@@ -512,7 +513,7 @@
 <!-- ════════════════════════════════════════════════
   ABOUT
 ═══════════════════════════════════════════════════ -->
-<section id="services" class="section">
+<section id="pricing" class="section">
   <div class="wrap">
     <p class="label" style="margin-bottom:10px;">Packages</p>
     <h2 class="section-title" style="margin-bottom:16px;">Simple, transparent pricing</h2>
@@ -630,7 +631,7 @@
 
       <!-- Photo -->
       <div class="photo-frame" style="height:100%;min-height:520px;">
-        <img src="493582018_2070973453312498_6904377668852075950_n.jpg" alt="MK in his home gym" />
+        <img src="potrait-of-mk.jpg" alt="MK — founder of BuiltByMK" />
       </div>
 
       <!-- Bio -->
