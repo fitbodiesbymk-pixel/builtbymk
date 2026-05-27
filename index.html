@@ -6,17 +6,17 @@
   <title>BuiltByMK — Websites & Digital Tools for Online Coaches</title>
   <meta name="description" content="Landing pages, lead magnets and client tools built for online coaches and course creators. Fast, professional, conversion-focused." />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     *{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{font-family:'Inter',sans-serif;background:#030303;color:#F0F0F5;overflow-x:hidden;}
-    h1,h2,h3,h4{font-family:'Oswald',sans-serif;font-weight:700;}
+    body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#1A1A1A;overflow-x:hidden;}
+    h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;}
 
     /* ── TYPOGRAPHY ── */
-    .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:rgba(255,255,255,.36);}
-    .display{font-family:'Oswald',sans-serif;font-size:clamp(48px,8vw,88px);line-height:.97;font-weight:700;color:#fff;}
-    .section-title{font-family:'Oswald',sans-serif;font-size:clamp(34px,5vw,52px);font-weight:700;color:#fff;line-height:1.05;}
+    .label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:#9CA3AF;}
+    .display{font-family:'Syne',sans-serif;font-size:clamp(48px,8vw,88px);line-height:.97;font-weight:800;color:#111;}
+    .section-title{font-family:'Syne',sans-serif;font-size:clamp(34px,5vw,52px);font-weight:700;color:#111;line-height:1.05;}
 
     /* ── LAYOUT ── */
     .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
@@ -26,56 +26,56 @@
     .btn-primary{
       display:inline-flex;align-items:center;gap:8px;
       background:#F5782A;color:#fff;
-      font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;letter-spacing:.03em;
-      padding:15px 30px;border-radius:12px;border:none;cursor:pointer;
+      font-family:'Syne',sans-serif;font-size:16px;font-weight:700;letter-spacing:.02em;
+      padding:15px 30px;border-radius:10px;border:none;cursor:pointer;
       text-decoration:none;transition:transform .15s,box-shadow .15s;
-      box-shadow:0 4px 24px rgba(245,120,42,.35);
+      box-shadow:0 4px 20px rgba(245,120,42,.22);
     }
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(245,120,42,.45);}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,120,42,.32);}
     .btn-secondary{
       display:inline-flex;align-items:center;gap:8px;
-      background:rgba(255,255,255,.06);color:#fff;
-      font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;letter-spacing:.03em;
-      padding:15px 30px;border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);cursor:pointer;
+      background:#fff;color:#1A1A1A;
+      font-family:'Syne',sans-serif;font-size:16px;font-weight:700;letter-spacing:.02em;
+      padding:15px 30px;border-radius:10px;
+      border:1.5px solid #E5E7EB;cursor:pointer;
       text-decoration:none;transition:background .15s,border-color .15s;
     }
-    .btn-secondary:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);}
+    .btn-secondary:hover{background:#F5F5F3;border-color:#D1D5DB;}
 
     /* ── NAV ── */
-    .nav-link{color:rgba(255,255,255,.5);font-size:14px;font-weight:500;text-decoration:none;transition:color .15s;}
-    .nav-link:hover{color:#fff;}
+    .nav-link{color:#6B7280;font-size:14px;font-weight:500;text-decoration:none;transition:color .15s;}
+    .nav-link:hover{color:#111;}
 
     /* ── TAGS ── */
     .tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:5px 12px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em;}
-    .tag-page{background:rgba(96,165,250,.12);color:#93C5FD;}
-    .tag-app {background:rgba(52,211,153,.12);color:#6EE7B7;}
-    .tag-quiz{background:rgba(251,191,36,.12);color:#FDE68A;}
+    .tag-page{background:rgba(59,130,246,.1);color:#2563EB;}
+    .tag-app {background:rgba(5,150,105,.1);color:#047857;}
+    .tag-quiz{background:rgba(217,119,6,.1);color:#B45309;}
 
     /* ── PROJECT CARDS ── */
     .project-card{
-      background:#0D0D0D;
-      border:1px solid rgba(255,255,255,.08);
+      background:#fff;
+      border:1px solid #E5E7EB;
       border-radius:20px;overflow:hidden;
     }
 
     /* ── PRICE CARDS ── */
     .price-card{
-      background:#0D0D0D;
-      border:1px solid rgba(255,255,255,.07);
+      background:#fff;
+      border:1px solid #E5E7EB;
       border-radius:24px;padding:36px;
       transition:border-color .2s,transform .2s;
       display:flex;flex-direction:column;
     }
-    .price-card:hover{border-color:rgba(245,120,42,.3);transform:translateY(-4px);}
+    .price-card:hover{border-color:rgba(245,120,42,.45);transform:translateY(-4px);}
     .price-card.featured{
       border-color:#F5782A;
-      background:linear-gradient(160deg,rgba(245,120,42,.08) 0%,rgba(245,120,42,.03) 100%);
+      background:linear-gradient(160deg,rgba(245,120,42,.05) 0%,rgba(245,120,42,.01) 100%);
     }
 
     /* ── PROCESS STEPS ── */
     .step-num{
-      font-family:'Oswald',sans-serif;font-size:56px;font-weight:700;
+      font-family:'Syne',sans-serif;font-size:56px;font-weight:800;
       color:rgba(245,120,42,.2);line-height:1;
     }
 
@@ -85,11 +85,11 @@
     /* ── MARQUEE ── */
     .marquee-track{display:flex;gap:48px;animation:scroll 22s linear infinite;white-space:nowrap;}
     @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    .marquee-item{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;color:rgba(255,255,255,.18);text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:48px;}
-    .marquee-item::after{content:'·';color:rgba(245,120,42,.45);}
+    .marquee-item{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:rgba(0,0,0,.14);text-transform:uppercase;letter-spacing:.12em;display:flex;align-items:center;gap:48px;}
+    .marquee-item::after{content:'·';color:rgba(245,120,42,.5);}
 
     /* ── DIVIDER ── */
-    .divider{width:100%;height:1px;background:rgba(255,255,255,.06);}
+    .divider{width:100%;height:1px;background:#E5E7EB;}
 
     /* ── MOBILE ── */
     #mobile-menu{display:none;}
@@ -100,25 +100,25 @@
     .carousel-viewport{overflow:hidden;}
     .work-slide{flex:0 0 78%;min-width:0;}
     .carousel-btn{
-      background:#141414;border:1px solid rgba(255,255,255,.1);
-      color:rgba(255,255,255,.6);
+      background:#fff;border:1.5px solid #E5E7EB;
+      color:#9CA3AF;
       width:42px;height:42px;border-radius:10px;
       display:inline-flex;align-items:center;justify-content:center;
       cursor:pointer;transition:all .18s;flex-shrink:0;
     }
-    .carousel-btn:hover{background:#222;border-color:rgba(255,255,255,.25);color:#fff;}
+    .carousel-btn:hover{background:#F5F5F3;border-color:#D1D5DB;color:#1A1A1A;}
     @media(max-width:768px){.work-slide{flex:0 0 90%;}}
 
     /* ── PHOTO FRAME ── */
     .photo-frame{
       position:relative;border-radius:28px;overflow:hidden;
-      box-shadow:0 32px 80px rgba(0,0,0,.5);
+      box-shadow:0 16px 48px rgba(0,0,0,.1);
     }
     .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
     .photo-badge{
       position:absolute;bottom:20px;left:20px;right:20px;
-      background:rgba(3,3,3,.88);backdrop-filter:blur(12px);
-      border:1px solid rgba(255,255,255,.1);border-radius:14px;
+      background:rgba(250,250,248,.95);backdrop-filter:blur(12px);
+      border:1px solid rgba(0,0,0,.08);border-radius:14px;
       padding:14px 18px;display:flex;align-items:center;gap:12px;
     }
 
@@ -142,9 +142,9 @@
 <!-- ════════════════════════════════════════════════
   NAV
 ═══════════════════════════════════════════════════ -->
-<header style="position:sticky;top:0;z-index:50;background:rgba(3,3,3,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);">
+<header style="position:sticky;top:0;z-index:50;background:rgba(250,250,248,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.07);">
   <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;height:68px;">
-    <a href="#" style="font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:#fff;text-decoration:none;">
+    <a href="#" style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#111;text-decoration:none;">
       Built<span style="color:#F5782A;">By</span>MK
     </a>
     <nav id="desktop-nav" style="display:flex;align-items:center;gap:36px;">
@@ -154,11 +154,11 @@
       <a href="#about"    class="nav-link">About</a>
       <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27d%20like%20to%20start%20a%20project" target="_blank" class="btn-primary" style="padding:10px 22px;font-size:15px;box-shadow:none;">Start a Project</a>
     </nav>
-    <button id="hamburger" style="background:none;border:none;cursor:pointer;padding:6px;color:#fff;" aria-label="Menu">
+    <button id="hamburger" style="background:none;border:none;cursor:pointer;padding:6px;color:#1A1A1A;" aria-label="Menu">
       <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
-  <div id="mobile-menu" style="border-top:1px solid rgba(255,255,255,.06);padding:20px 24px;gap:20px;">
+  <div id="mobile-menu" style="border-top:1px solid rgba(0,0,0,.07);padding:20px 24px;gap:20px;">
     <a href="#work"     class="nav-link" style="font-size:16px;">Work</a>
     <a href="#services" class="nav-link" style="font-size:16px;">Services</a>
     <a href="#process"  class="nav-link" style="font-size:16px;">Process</a>
@@ -180,7 +180,7 @@
         <h1 class="display" style="margin-bottom:26px;">
           Your coaching<br>is powerful.<br><span style="color:#F5782A;">Your website</span><br>should be too.
         </h1>
-        <p style="font-size:18px;color:rgba(255,255,255,.5);line-height:1.7;max-width:480px;margin-bottom:40px;">
+        <p style="font-size:18px;color:#6B7280;line-height:1.7;max-width:480px;margin-bottom:40px;">
           Get a professional coaching website, lead magnet, or client tool — live in 48 hours. No agency, no templates, no waiting. Built by a real coach who knows what converts.
         </p>
         <div style="display:flex;gap:14px;flex-wrap:wrap;" class="hero-ctas">
@@ -189,22 +189,22 @@
         </div>
 
         <!-- Stats -->
-        <div class="stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:56px;background:rgba(255,255,255,.06);border-radius:16px;overflow:hidden;">
-          <div style="background:#030303;padding:22px 18px;">
-            <p style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">4</p>
-            <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;">Projects built</p>
+        <div class="stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:56px;background:rgba(0,0,0,.04);border-radius:16px;overflow:hidden;">
+          <div style="background:#FAFAF8;padding:22px 18px;">
+            <p style="font-family:'Syne',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">4</p>
+            <p style="font-size:12px;color:#9CA3AF;margin-top:4px;">Projects built</p>
           </div>
-          <div style="background:#030303;padding:22px 18px;">
-            <p style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">48h</p>
-            <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;">Avg. turnaround</p>
+          <div style="background:#FAFAF8;padding:22px 18px;">
+            <p style="font-family:'Syne',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">48h</p>
+            <p style="font-size:12px;color:#9CA3AF;margin-top:4px;">Avg. turnaround</p>
           </div>
-          <div style="background:#030303;padding:22px 18px;">
-            <p style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">4</p>
-            <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;">Live projects</p>
+          <div style="background:#FAFAF8;padding:22px 18px;">
+            <p style="font-family:'Syne',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">4</p>
+            <p style="font-size:12px;color:#9CA3AF;margin-top:4px;">Live projects</p>
           </div>
-          <div style="background:#030303;padding:22px 18px;">
-            <p style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">$0</p>
-            <p style="font-size:12px;color:rgba(255,255,255,.4);margin-top:4px;">Monthly fees</p>
+          <div style="background:#FAFAF8;padding:22px 18px;">
+            <p style="font-family:'Syne',sans-serif;font-size:36px;font-weight:700;color:#F5782A;line-height:1;">$0</p>
+            <p style="font-size:12px;color:#9CA3AF;margin-top:4px;">Monthly fees</p>
           </div>
         </div>
       </div>
@@ -223,7 +223,7 @@
 <!-- ════════════════════════════════════════════════
   MARQUEE
 ═══════════════════════════════════════════════════ -->
-<div style="overflow:hidden;padding:28px 0;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05);">
+<div style="overflow:hidden;padding:28px 0;border-top:1px solid rgba(0,0,0,.07);border-bottom:1px solid rgba(0,0,0,.07);">
   <div style="display:flex;">
     <div class="marquee-track">
       <span class="marquee-item">Landing Pages</span>
@@ -258,7 +258,7 @@
         <h2 class="section-title">What I've built</h2>
       </div>
       <div style="display:flex;align-items:center;gap:14px;">
-        <span id="work-counter" style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;color:rgba(255,255,255,.28);letter-spacing:.08em;min-width:52px;text-align:right;">01 / 04</span>
+        <span id="work-counter" style="font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:#9CA3AF;letter-spacing:.08em;min-width:52px;text-align:right;">01 / 04</span>
         <button id="work-prev" class="carousel-btn" aria-label="Previous">
           <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
         </button>
@@ -282,28 +282,28 @@
                 <span style="width:10px;height:10px;background:#FCD34D;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
                 <span style="width:10px;height:10px;background:#34D399;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
                 <div style="flex:1;margin-left:10px;background:#1a1a28;border-radius:6px;height:22px;display:flex;align-items:center;padding:0 12px;min-width:0;">
-                  <span style="font-size:11px;color:rgba(255,255,255,.3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">beyondthescale.site</span>
+                  <span style="font-size:11px;color:#9CA3AF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">beyondthescale.site</span>
                 </div>
               </div>
               <!-- Site preview -->
               <div style="background:#0F1F38;padding:28px 28px 32px;">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.08);">
-                  <span style="font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.06em;">BEYOND THE SCALE</span>
+                  <span style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:.06em;">BEYOND THE SCALE</span>
                   <span style="background:#F5782A;color:#fff;font-size:10px;font-weight:700;padding:6px 13px;border-radius:8px;letter-spacing:.04em;white-space:nowrap;">BOOK A CALL</span>
                 </div>
-                <p style="font-size:11px;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px;">GLP-1 Telehealth · Weight Loss</p>
-                <h3 style="font-family:'Oswald',sans-serif;font-size:clamp(24px,4vw,42px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:14px;">More than just<br><span style="color:#F5782A;">weight loss.</span></h3>
-                <p style="font-size:13px;color:rgba(255,255,255,.45);margin-bottom:22px;max-width:460px;line-height:1.65;">Personalised medical support + accountability coaching. Starting from R2,500/month.</p>
+                <p style="font-size:11px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px;">GLP-1 Telehealth · Weight Loss</p>
+                <h3 style="font-family:'Syne',sans-serif;font-size:clamp(24px,4vw,42px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:14px;">More than just<br><span style="color:#F5782A;">weight loss.</span></h3>
+                <p style="font-size:13px;color:#6B7280;margin-bottom:22px;max-width:460px;line-height:1.65;">Personalised medical support + accountability coaching. Starting from R2,500/month.</p>
                 <div style="display:flex;gap:10px;flex-wrap:wrap;">
                   <span style="background:#F5782A;color:#fff;font-size:12px;font-weight:700;padding:10px 20px;border-radius:9px;letter-spacing:.02em;">Book Free Consultation</span>
-                  <span style="color:rgba(255,255,255,.4);font-size:12px;font-weight:600;padding:10px 20px;border-radius:9px;border:1px solid rgba(255,255,255,.14);">See How It Works</span>
+                  <span style="color:#9CA3AF;font-size:12px;font-weight:600;padding:10px 20px;border-radius:9px;border:1px solid rgba(255,255,255,.14);">See How It Works</span>
                 </div>
               </div>
               <!-- Card info -->
               <div style="padding:28px 32px 34px;border-top:1px solid rgba(255,255,255,.07);">
                 <span class="tag tag-page" style="margin-bottom:16px;display:inline-flex;">Landing Page</span>
-                <h3 style="font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">Beyond the Scale</h3>
-                <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:26px;">Telehealth weight loss landing page for a GLP-1 medical coaching practice. Dark premium look, Calendly booking, and a lead capture funnel.</p>
+                <h3 style="font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">Beyond the Scale</h3>
+                <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:26px;">Telehealth weight loss landing page for a GLP-1 medical coaching practice. Dark premium look, Calendly booking, and a lead capture funnel.</p>
                 <a href="https://beyondthescale.site" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:13px 26px;">View Live Site →</a>
               </div>
             </div>
@@ -318,29 +318,29 @@
                 <span style="width:10px;height:10px;background:#FCD34D;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
                 <span style="width:10px;height:10px;background:#34D399;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
                 <div style="flex:1;margin-left:10px;background:#1a1a28;border-radius:6px;height:22px;display:flex;align-items:center;padding:0 12px;min-width:0;">
-                  <span style="font-size:11px;color:rgba(255,255,255,.3);">coleperformance.co</span>
+                  <span style="font-size:11px;color:#9CA3AF;">coleperformance.co</span>
                 </div>
               </div>
               <!-- Site preview: cream/green editorial -->
               <div style="background:#F5F4EF;padding:28px 28px 32px;">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid rgba(0,0,0,.1);">
-                  <span style="font-family:'Oswald',sans-serif;font-size:15px;font-weight:700;color:#111;letter-spacing:.06em;">COLE PERFORMANCE</span>
+                  <span style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#111;letter-spacing:.06em;">COLE PERFORMANCE</span>
                   <span style="background:#166534;color:#fff;font-size:10px;font-weight:700;padding:6px 13px;border-radius:8px;letter-spacing:.04em;white-space:nowrap;">BOOK A CALL</span>
                 </div>
                 <div style="background:#111;border-radius:14px;padding:24px 22px;">
-                  <p style="font-size:11px;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px;">Online Coaching · Men 35–50</p>
-                  <h3 style="font-family:'Oswald',sans-serif;font-size:clamp(22px,3.8vw,38px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px;">Built for men who are<br><span style="color:#86EFAC;">serious about strength.</span></h3>
+                  <p style="font-size:11px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px;">Online Coaching · Men 35–50</p>
+                  <h3 style="font-family:'Syne',sans-serif;font-size:clamp(22px,3.8vw,38px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px;">Built for men who are<br><span style="color:#86EFAC;">serious about strength.</span></h3>
                   <div style="display:flex;gap:10px;flex-wrap:wrap;">
                     <span style="background:#166534;color:#fff;font-size:12px;font-weight:700;padding:10px 20px;border-radius:9px;">Book Free Call</span>
-                    <span style="color:rgba(255,255,255,.4);font-size:12px;font-weight:600;padding:10px 20px;border-radius:9px;border:1px solid rgba(255,255,255,.15);">See Services</span>
+                    <span style="color:#9CA3AF;font-size:12px;font-weight:600;padding:10px 20px;border-radius:9px;border:1px solid rgba(255,255,255,.15);">See Services</span>
                   </div>
                 </div>
               </div>
               <!-- Card info -->
               <div style="padding:28px 32px 34px;border-top:1px solid rgba(255,255,255,.07);">
                 <span class="tag tag-page" style="margin-bottom:16px;display:inline-flex;">Landing Page</span>
-                <h3 style="font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">Cole Performance</h3>
-                <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:26px;">Men's strength and conditioning coaching site. Editorial cream-and-green aesthetic — deliberately distinct from the typical dark fitness template.</p>
+                <h3 style="font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">Cole Performance</h3>
+                <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:26px;">Men's strength and conditioning coaching site. Editorial cream-and-green aesthetic — deliberately distinct from the typical dark fitness template.</p>
                 <a href="https://fitbodiesbymk-pixel.github.io/cole-performance/" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:13px 26px;">View Live Site →</a>
               </div>
             </div>
@@ -364,7 +364,7 @@
                 <div style="background:#fff;border-radius:14px;padding:16px 18px;margin-bottom:16px;border:1px solid rgba(0,0,0,.06);display:flex;justify-content:space-between;align-items:center;">
                   <div>
                     <p style="font-size:11px;color:#6B7280;margin-bottom:3px;font-weight:500;">Week 1 · Lower Body</p>
-                    <span style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:#111;letter-spacing:.02em;">COMEBACK STRONG</span>
+                    <span style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#111;letter-spacing:.02em;">COMEBACK STRONG</span>
                   </div>
                   <span style="background:#ECFDF5;color:#059669;font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;white-space:nowrap;border:1px solid #D1FAE5;">Phase 1</span>
                 </div>
@@ -400,8 +400,8 @@
               <!-- Card info -->
               <div style="padding:28px 32px 34px;border-top:1px solid rgba(255,255,255,.07);">
                 <span class="tag tag-app" style="margin-bottom:16px;display:inline-flex;">Client App</span>
-                <h3 style="font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">Comeback Strong Tracker</h3>
-                <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:26px;">Mobile-first workout tracking app for a 6-week program. Clients log sets, track progress session by session, and unlock each phase as they complete it.</p>
+                <h3 style="font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">Comeback Strong Tracker</h3>
+                <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:26px;">Mobile-first workout tracking app for a 6-week program. Clients log sets, track progress session by session, and unlock each phase as they complete it.</p>
                 <a href="https://fitbodiesbymk-pixel.github.io/comeback-tracker/" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:13px 26px;">View Live App →</a>
               </div>
             </div>
@@ -416,7 +416,7 @@
                 <span style="width:10px;height:10px;background:#FCD34D;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
                 <span style="width:10px;height:10px;background:#34D399;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
                 <div style="flex:1;margin-left:10px;background:#292524;border-radius:6px;height:22px;display:flex;align-items:center;padding:0 12px;min-width:0;">
-                  <span style="font-size:11px;color:rgba(255,255,255,.3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">over40bodycheck.co</span>
+                  <span style="font-size:11px;color:#9CA3AF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">over40bodycheck.co</span>
                 </div>
               </div>
               <!-- Quiz preview: warm editorial -->
@@ -424,11 +424,11 @@
                 <!-- Editorial header -->
                 <div style="border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:18px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;">
                   <div>
-                    <p style="font-size:9px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.16em;margin-bottom:4px;">Free Assessment</p>
-                    <span style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;color:#fff;letter-spacing:.06em;">FITBODIES <span style="color:#D97706;">BY MK</span></span>
+                    <p style="font-size:9px;color:#9CA3AF;text-transform:uppercase;letter-spacing:.16em;margin-bottom:4px;">Free Assessment</p>
+                    <span style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#fff;letter-spacing:.06em;">FITBODIES <span style="color:#D97706;">BY MK</span></span>
                   </div>
                   <div style="text-align:right;">
-                    <p style="font-size:10px;color:rgba(255,255,255,.3);margin-bottom:2px;">Q3 of 8</p>
+                    <p style="font-size:10px;color:#9CA3AF;margin-bottom:2px;">Q3 of 8</p>
                     <div style="display:flex;gap:3px;">
                       <span style="width:18px;height:3px;background:#D97706;border-radius:99px;display:inline-block;"></span>
                       <span style="width:18px;height:3px;background:#D97706;border-radius:99px;display:inline-block;"></span>
@@ -439,7 +439,7 @@
                   </div>
                 </div>
                 <!-- Question -->
-                <h3 style="font-family:'Oswald',sans-serif;font-size:clamp(18px,3vw,26px);font-weight:700;color:#F5F0E8;margin-bottom:20px;line-height:1.25;">How many days per week do you currently exercise?</h3>
+                <h3 style="font-family:'Syne',sans-serif;font-size:clamp(18px,3vw,26px);font-weight:700;color:#F5F0E8;margin-bottom:20px;line-height:1.25;">How many days per week do you currently exercise?</h3>
                 <!-- Options: warm palette -->
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
                   <div style="background:#292524;border:1px solid rgba(255,255,255,.09);border-radius:10px;padding:13px;text-align:center;font-size:13px;font-weight:600;color:rgba(245,240,232,.55);">0 days</div>
@@ -451,8 +451,8 @@
               <!-- Card info -->
               <div style="padding:28px 32px 34px;border-top:1px solid rgba(255,255,255,.07);">
                 <span class="tag tag-quiz" style="margin-bottom:16px;display:inline-flex;">Lead Magnet</span>
-                <h3 style="font-family:'Oswald',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">The Over 40 Body Check</h3>
-                <p style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:26px;">8-question lifestyle quiz with personalised result profiles, email capture, and CTA routing — built to attract, qualify, and convert the right clients.</p>
+                <h3 style="font-family:'Syne',sans-serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:8px;">The Over 40 Body Check</h3>
+                <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:26px;">8-question lifestyle quiz with personalised result profiles, email capture, and CTA routing — built to attract, qualify, and convert the right clients.</p>
                 <a href="https://fitbodiesbymk-pixel.github.io/over40-quiz/" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:13px 26px;">View Live Quiz →</a>
               </div>
             </div>
@@ -462,7 +462,7 @@
     </div><!-- /carousel-viewport -->
 
     <div style="margin-top:48px;text-align:center;">
-      <p style="font-size:16px;color:rgba(255,255,255,.4);margin-bottom:18px;">Want something like this for your coaching business?</p>
+      <p style="font-size:16px;color:#9CA3AF;margin-bottom:18px;">Want something like this for your coaching business?</p>
       <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27d%20like%20to%20discuss%20a%20project" target="_blank" class="btn-primary">Let's build yours →</a>
     </div>
   </div>
@@ -471,38 +471,38 @@
 <!-- ════════════════════════════════════════════════
   PROCESS
 ═══════════════════════════════════════════════════ -->
-<section id="process" style="background:#000;padding:100px 0;">
+<section id="process" style="background:#F3F3F0;padding:100px 0;">
   <div class="wrap">
     <p class="label" style="margin-bottom:10px;">How it works</p>
     <h2 class="section-title" style="margin-bottom:16px;">Simple from start to live</h2>
-    <p style="font-size:16px;color:rgba(255,255,255,.45);margin-bottom:64px;max-width:480px;">No lengthy briefs, no back-and-forth. Most projects go from first message to live site in under a week.</p>
+    <p style="font-size:16px;color:#6B7280;margin-bottom:64px;max-width:480px;">No lengthy briefs, no back-and-forth. Most projects go from first message to live site in under a week.</p>
 
     <div class="process-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
 
-      <div style="background:#0D0D0D;border:1px solid rgba(255,255,255,.07);border-radius:24px;padding:36px;">
+      <div style="background:#fff;border:1px solid #E5E7EB;border-radius:24px;padding:36px;">
         <p class="step-num" style="margin-bottom:20px;">01</p>
-        <h3 style="font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:12px;">Tell me about your business</h3>
-        <p style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;">Send me a WhatsApp message with what you do, who you serve, and what you need. No forms, no calls required to get started.</p>
+        <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#111;margin-bottom:12px;">Tell me about your business</h3>
+        <p style="font-size:14px;color:#6B7280;line-height:1.7;">Send me a WhatsApp message with what you do, who you serve, and what you need. No forms, no calls required to get started.</p>
       </div>
 
-      <div style="background:#0D0D0D;border:1px solid rgba(255,255,255,.07);border-radius:24px;padding:36px;position:relative;">
+      <div style="background:#fff;border:1px solid #E5E7EB;border-radius:24px;padding:36px;position:relative;">
         <div style="position:absolute;top:-1px;left:36px;right:36px;height:2px;background:#F5782A;border-radius:0 0 2px 2px;"></div>
         <p class="step-num" style="margin-bottom:20px;">02</p>
-        <h3 style="font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:12px;">I build it — fast</h3>
-        <p style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;">Landing pages take 48 hours. Lead magnets 3–5 days. Full coach toolkits under 10 days. I handle design, copy, and going live.</p>
+        <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#111;margin-bottom:12px;">I build it — fast</h3>
+        <p style="font-size:14px;color:#6B7280;line-height:1.7;">Landing pages take 48 hours. Lead magnets 3–5 days. Full coach toolkits under 10 days. I handle design, copy, and going live.</p>
       </div>
 
-      <div style="background:#0D0D0D;border:1px solid rgba(255,255,255,.07);border-radius:24px;padding:36px;">
+      <div style="background:#fff;border:1px solid #E5E7EB;border-radius:24px;padding:36px;">
         <p class="step-num" style="margin-bottom:20px;">03</p>
-        <h3 style="font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:12px;">Review, tweak, launch</h3>
-        <p style="font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;">You review the build, request any changes, and once you're happy I push it live. You get the full files — yours to keep forever.</p>
+        <h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#111;margin-bottom:12px;">Review, tweak, launch</h3>
+        <p style="font-size:14px;color:#6B7280;line-height:1.7;">You review the build, request any changes, and once you're happy I push it live. You get the full files — yours to keep forever.</p>
       </div>
 
     </div>
 
     <div style="margin-top:48px;text-align:center;">
       <a href="https://wa.me/97452086673?text=Hi%20MK%2C%20I%27d%20like%20to%20start%20a%20project" target="_blank" class="btn-primary" style="font-size:18px;padding:17px 36px;">Message me to get started →</a>
-      <p style="font-size:13px;color:rgba(255,255,255,.25);margin-top:12px;">No forms. No calls. Just tell me what you need.</p>
+      <p style="font-size:13px;color:#9CA3AF;margin-top:12px;">No forms. No calls. Just tell me what you need.</p>
     </div>
   </div>
 </section>
@@ -514,35 +514,35 @@
   <div class="wrap">
     <p class="label" style="margin-bottom:10px;">Packages</p>
     <h2 class="section-title" style="margin-bottom:16px;">Simple, transparent pricing</h2>
-    <p style="font-size:16px;color:rgba(255,255,255,.45);margin-bottom:64px;max-width:480px;">No hourly billing, no surprise costs. You know exactly what you get and what you pay — before we start.</p>
+    <p style="font-size:16px;color:#6B7280;margin-bottom:64px;max-width:480px;">No hourly billing, no surprise costs. You know exactly what you get and what you pay — before we start.</p>
 
     <div class="prices-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
 
       <!-- Launch Page -->
       <div class="price-card">
-        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#93C5FD;margin-bottom:20px;">Launch Page</p>
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#2563EB;margin-bottom:20px;">Launch Page</p>
         <div style="margin-bottom:6px;">
-          <span style="font-family:'Oswald',sans-serif;font-size:52px;font-weight:700;color:#fff;line-height:1;">$300</span>
+          <span style="font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:#111;line-height:1;">$300</span>
         </div>
-        <p style="font-size:13px;color:rgba(255,255,255,.3);margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.07);">One-time · Delivered in 48–72 hrs</p>
+        <p style="font-size:13px;color:#9CA3AF;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #E5E7EB;">One-time · Delivered in 48–72 hrs</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:36px;flex:1;">
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Single-page landing site
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Mobile-first, fast-loading
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Booking or WhatsApp CTA
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Hosted &amp; live on delivery
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             1 round of revisions
           </li>
@@ -553,29 +553,29 @@
       <!-- Lead Magnet — Featured -->
       <div class="price-card featured" style="position:relative;">
         <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#F5782A;color:#fff;font-size:11px;font-weight:700;padding:5px 18px;border-radius:99px;white-space:nowrap;letter-spacing:.06em;text-transform:uppercase;">Most Popular</div>
-        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#FDE68A;margin-bottom:20px;">Lead Magnet</p>
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#D97706;margin-bottom:20px;">Lead Magnet</p>
         <div style="margin-bottom:6px;">
-          <span style="font-family:'Oswald',sans-serif;font-size:52px;font-weight:700;color:#fff;line-height:1;">$550</span>
+          <span style="font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:#111;line-height:1;">$550</span>
         </div>
-        <p style="font-size:13px;color:rgba(255,255,255,.3);margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.07);">One-time · Delivered in 3–5 days</p>
+        <p style="font-size:13px;color:#9CA3AF;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #E5E7EB;">One-time · Delivered in 3–5 days</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:36px;flex:1;">
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Quiz or assessment tool
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Personalised results page
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Email capture built in
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Routes leads to your offer
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             2 rounds of revisions
           </li>
@@ -585,29 +585,29 @@
 
       <!-- Coach Toolkit -->
       <div class="price-card">
-        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6EE7B7;margin-bottom:20px;">Coach Toolkit</p>
+        <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#047857;margin-bottom:20px;">Coach Toolkit</p>
         <div style="margin-bottom:6px;">
-          <span style="font-family:'Oswald',sans-serif;font-size:52px;font-weight:700;color:#fff;line-height:1;">$1,100</span>
+          <span style="font-family:'Syne',sans-serif;font-size:52px;font-weight:800;color:#111;line-height:1;">$1,100</span>
         </div>
-        <p style="font-size:13px;color:rgba(255,255,255,.3);margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.07);">One-time · Delivered in 7–10 days</p>
+        <p style="font-size:13px;color:#9CA3AF;margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid #E5E7EB;">One-time · Delivered in 7–10 days</p>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:36px;flex:1;">
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Everything in Launch Page
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Quiz or lead magnet
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Client-facing tool or app
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Full digital setup for launch
           </li>
-          <li style="display:flex;gap:12px;font-size:14px;color:rgba(255,255,255,.6);">
+          <li style="display:flex;gap:12px;font-size:14px;color:#4B5563;">
             <svg class="check" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
             Unlimited revisions
           </li>
@@ -622,7 +622,7 @@
 <!-- ════════════════════════════════════════════════
   ABOUT
 ═══════════════════════════════════════════════════ -->
-<section id="about" style="background:#000;padding:100px 0;">
+<section id="about" style="background:#F3F3F0;padding:100px 0;">
   <div class="wrap">
     <div class="about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:stretch;">
 
@@ -636,13 +636,13 @@
         <p class="label" style="margin-bottom:14px;">Who's behind BuiltByMK</p>
         <h2 class="section-title" style="margin-bottom:28px;">A coach who builds<br>for coaches</h2>
 
-        <p style="font-size:16px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:18px;">
-          I'm MK — a fitness coach based in Doha, Qatar, working with the over-40 crowd. People who are too busy, too sore, or too stuck in the wrong routine to figure out where to start. Through <strong style="color:#fff;">Fitbodies by MK</strong>, I coach clients through strength training, body recomposition, and building consistency that actually holds after 40.
+        <p style="font-size:16px;color:#4B5563;line-height:1.8;margin-bottom:18px;">
+          I'm MK — a fitness coach based in Doha, Qatar, working with the over-40 crowd. People who are too busy, too sore, or too stuck in the wrong routine to figure out where to start. Through <strong style="color:#111;">Fitbodies by MK</strong>, I coach clients through strength training, body recomposition, and building consistency that actually holds after 40.
         </p>
-        <p style="font-size:16px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:18px;">
-          After building my own coaching programs, client tools, and websites from scratch, I realised most coaches were either overpaying agencies or making do with something that didn't represent them. So I started <strong style="color:#fff;">BuiltByMK</strong> — to help other coaches get online properly, fast, without the nonsense.
+        <p style="font-size:16px;color:#4B5563;line-height:1.8;margin-bottom:18px;">
+          After building my own coaching programs, client tools, and websites from scratch, I realised most coaches were either overpaying agencies or making do with something that didn't represent them. So I started <strong style="color:#111;">BuiltByMK</strong> — to help other coaches get online properly, fast, without the nonsense.
         </p>
-        <p style="font-size:16px;color:rgba(255,255,255,.6);line-height:1.8;margin-bottom:40px;">
+        <p style="font-size:16px;color:#4B5563;line-height:1.8;margin-bottom:40px;">
           Every build comes from actually knowing what coaches need and what their clients respond to. You work directly with me — not a team, not a template, not an account manager. Just straight, focused work from first message to going live.
         </p>
 
@@ -659,10 +659,10 @@
 <section style="padding:100px 24px;text-align:center;">
   <div style="max-width:680px;margin:0 auto;">
     <p class="label" style="margin-bottom:20px;">Ready to get started?</p>
-    <h2 style="font-family:'Oswald',sans-serif;font-size:clamp(36px,6vw,64px);font-weight:700;color:#fff;line-height:1.05;margin-bottom:20px;">
+    <h2 style="font-family:'Syne',sans-serif;font-size:clamp(36px,6vw,64px);font-weight:800;color:#111;line-height:1.05;margin-bottom:20px;">
       Stop losing clients to a<br><span style="color:#F5782A;">weak online presence.</span>
     </h2>
-    <p style="font-size:17px;color:rgba(255,255,255,.5);margin-bottom:44px;line-height:1.7;">
+    <p style="font-size:17px;color:#6B7280;margin-bottom:44px;line-height:1.7;">
       Tell me what you need. I'll tell you how I can help — and what it'll cost. No sales pitch, no pressure. Just a straight conversation on WhatsApp.
     </p>
     <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;">
@@ -670,7 +670,7 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.122 1.522 5.858L0 24l6.335-1.508A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.368l-.36-.213-3.76.895.952-3.653-.235-.376A9.782 9.782 0 012.182 12c0-5.42 4.398-9.818 9.818-9.818 5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
         Message on WhatsApp
       </a>
-      <a href="mailto:coachmk@fitbodiesbymk.com" class="btn-primary" style="font-size:18px;padding:18px 36px;display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);">
+      <a href="mailto:coachmk@fitbodiesbymk.com" class="btn-secondary" style="font-size:18px;padding:18px 36px;display:inline-flex;align-items:center;gap:10px;">
         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         Send an Email
       </a>
@@ -681,15 +681,15 @@
 <!-- ════════════════════════════════════════════════
   FOOTER
 ═══════════════════════════════════════════════════ -->
-<footer style="border-top:1px solid rgba(255,255,255,.06);padding:40px 24px;">
+<footer style="border-top:1px solid #E5E7EB;padding:40px 24px;">
   <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
-    <span style="font-family:'Oswald',sans-serif;font-size:20px;font-weight:700;color:#fff;">Built<span style="color:#F5782A;">By</span>MK</span>
+    <span style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#111;">Built<span style="color:#F5782A;">By</span>MK</span>
     <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
-      <a href="mailto:coachmk@fitbodiesbymk.com" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;display:flex;align-items:center;gap:7px;transition:color .15s;">
+      <a href="mailto:coachmk@fitbodiesbymk.com" style="font-size:13px;color:#9CA3AF;text-decoration:none;display:flex;align-items:center;gap:7px;transition:color .15s;">
         <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         coachmk@fitbodiesbymk.com
       </a>
-      <p style="font-size:13px;color:rgba(255,255,255,.2);">© <span id="yr"></span> BuiltByMK</p>
+      <p style="font-size:13px;color:#9CA3AF;">© <span id="yr"></span> BuiltByMK</p>
     </div>
   </div>
 </footer>
