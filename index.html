@@ -256,7 +256,7 @@
         <h2 class="section-title">What I've built</h2>
       </div>
       <div style="display:flex;align-items:center;gap:14px;">
-        <span id="work-counter" style="font-family:'Roboto Mono',monospace;font-size:13px;font-weight:400;color:rgba(55,189,248,.5);letter-spacing:.1em;min-width:52px;text-align:right;">01 / 04</span>
+        <span id="work-counter" style="font-family:'Roboto Mono',monospace;font-size:13px;font-weight:400;color:rgba(55,189,248,.5);letter-spacing:.1em;min-width:52px;text-align:right;">01 / 05</span>
         <button id="work-prev" class="carousel-btn" aria-label="Previous">
           <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
         </button>
@@ -764,6 +764,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
   var nextBtn = document.getElementById('work-next');
   if (prevBtn) prevBtn.addEventListener('click', function(){ goTo(cur - 1); });
   if (nextBtn) nextBtn.addEventListener('click', function(){ goTo(cur + 1); });
+  goTo(0);
 
   // Swipe
   var startX = 0;
