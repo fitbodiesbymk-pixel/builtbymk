@@ -108,6 +108,8 @@
     .price-items li:last-child{border-bottom:none;}
     .price-items li::before{content:'✓';color:var(--orange);font-weight:700;flex-shrink:0;margin-top:1px;}
     .price-guarantee{background:var(--orange-light);border-radius:10px;padding:12px 14px;font-size:12px;color:var(--orange);font-weight:600;line-height:1.5;}
+    .price-pay{display:block;width:100%;background:var(--orange);color:#fff;border:none;border-radius:50px;padding:16px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;transition:all .2s;margin-top:16px;}
+    .price-pay:hover{background:#E06520;transform:translateY(-1px);box-shadow:0 6px 24px rgba(245,120,42,0.3);}
 
     /* PROCESS */
     .process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-top:48px;}
@@ -177,7 +179,7 @@
       <a href="#pricing">Pricing</a>
       <a href="#process">Process</a>
       <a href="#about">About</a>
-      <a href="#start" class="nav-cta">Start a Project →</a>
+      <a href="#pricing" class="nav-cta">Start a Project →</a>
     </div>
   </div>
 </nav>
@@ -188,7 +190,7 @@
   <h1>You've spent years getting good at something. Getting paid for it online is a <em>different problem.</em> That one's mine.</h1>
   <p>I build the pages, quizzes, and tools that take your expertise out of your head and put it somewhere people can find it, trust it, and buy it.</p>
   <div class="hero-actions">
-    <a href="#start" class="btn-primary">Start a Project →</a>
+    <a href="#pricing" class="btn-primary">Start a Project →</a>
     <a href="#work" class="btn-ghost">See the work ↓</a>
   </div>
 </div>
@@ -323,6 +325,7 @@
           <li>Full ownership, no ongoing fees</li>
         </ul>
         <div class="price-guarantee">If it doesn't match what we agreed, I fix it. Simple.</div>
+        <a href="https://buy.stripe.com/9B69AS0UH4nfeCE97253O05" target="_blank" class="price-pay">Pay $297 →</a>
       </div>
       <div class="price-card featured">
         <div class="price-badge">Most Popular</div>
@@ -340,6 +343,7 @@
           <li>Full ownership, no ongoing fees</li>
         </ul>
         <div class="price-guarantee">If it doesn't match what we agreed, I fix it. Simple.</div>
+        <a href="https://buy.stripe.com/28E3cu46TbPHamobfa53O06" target="_blank" class="price-pay">Pay $550 →</a>
       </div>
     </div>
   </div>
@@ -397,16 +401,16 @@
 <!-- CTA STRIP -->
 <div class="cta-strip">
   <h2>You already have the expertise. Let's build the thing that shows it.</h2>
-  <p>Fill in the form below and I'll come back to you within 24 hours.</p>
-  <a href="#start" class="btn-primary">Start a Project →</a>
+  <p>Pick your option below and pay to get started. I'll be in touch within 24 hours to kick things off.</p>
+  <a href="#pricing" class="btn-primary">See pricing →</a>
 </div>
 
 <!-- FORM -->
-<section id="start">
+<section id="start" style="background:var(--alt);">
   <div class="section-inner">
-    <p class="section-tag">Start a project</p>
-    <h2 class="section-heading">Tell me what you need.</h2>
-    <p class="section-sub" style="margin-bottom:48px;">Fill in the form and I'll come back to you within 24 hours. No commitment, no pressure.</p>
+    <p class="section-tag">Not sure yet?</p>
+    <h2 class="section-heading">Send me a message first.</h2>
+    <p class="section-sub" style="margin-bottom:48px;">If you're not sure which option fits, fill in the form and I'll come back to you within 24 hours.</p>
     <div class="form-inner">
       <form action="https://formspree.io/f/mvzywykn" method="POST">
         <div class="form-grid">
