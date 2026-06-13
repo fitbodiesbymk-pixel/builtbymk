@@ -40,11 +40,14 @@
 
     /* HERO */
     .hero{max-width:1100px;margin:0 auto;padding:100px 32px 80px;}
+    .hero-inner{display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:center;}
     .hero-tag{display:inline-block;background:var(--orange-light);color:var(--orange);border-radius:50px;padding:6px 16px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px;}
-    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(38px,6vw,68px);font-weight:700;line-height:1.1;color:var(--text);max-width:800px;margin-bottom:24px;}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(38px,5vw,60px);font-weight:700;line-height:1.1;color:var(--text);margin-bottom:24px;}
     .hero h1 em{font-style:italic;color:var(--orange);}
-    .hero p{font-size:18px;color:var(--muted);max-width:580px;line-height:1.75;margin-bottom:40px;}
+    .hero p{font-size:18px;color:var(--muted);max-width:520px;line-height:1.75;margin-bottom:40px;}
     .hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+    .hero-photo{width:100%;aspect-ratio:4/5;border-radius:20px;overflow:hidden;background:var(--alt);}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:top;}
     .btn-primary{background:var(--orange);color:#fff;border:none;border-radius:50px;padding:16px 36px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block;}
     .btn-primary:hover{background:#E06520;transform:translateY(-2px);box-shadow:0 6px 24px rgba(245,120,42,0.3);}
     .btn-ghost{font-size:15px;font-weight:600;color:var(--muted);text-decoration:none;transition:color .18s;}
@@ -160,6 +163,8 @@
       nav{padding:0 20px;}
       .nav-links{display:none;}
       .hero{padding:60px 20px 60px;}
+      .hero-inner{grid-template-columns:1fr;gap:40px;}
+      .hero-photo{aspect-ratio:3/2;order:-1;}
       section{padding:60px 20px;}
       .about-inner{grid-template-columns:1fr;gap:40px;}
       .about-img{aspect-ratio:3/2;}
@@ -186,12 +191,19 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-tag">BuiltByMK</div>
-  <h1>You've spent years getting good at something. Getting paid for it online is a <em>different problem.</em> That one's mine.</h1>
-  <p>I build the pages, quizzes, and tools that take your expertise out of your head and put it somewhere people can find it, trust it, and buy it.</p>
-  <div class="hero-actions">
-    <a href="#pricing" class="btn-primary">Start a Project →</a>
-    <a href="#work" class="btn-ghost">See the work ↓</a>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">BuiltByMK</div>
+      <h1>You've spent years getting good at something. Getting paid for it online is a <em>different problem.</em> That one's mine.</h1>
+      <p>I build the pages, quizzes, and tools that take your expertise out of your head and put it somewhere people can find it, trust it, and buy it.</p>
+      <div class="hero-actions">
+        <a href="#pricing" class="btn-primary">Start a Project →</a>
+        <a href="#work" class="btn-ghost">See the work ↓</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="mk-hero.jpg" alt="MK — BuiltByMK"/>
+    </div>
   </div>
 </div>
 
