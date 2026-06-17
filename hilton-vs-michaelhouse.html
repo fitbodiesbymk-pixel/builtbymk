@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hilton vs Michaelhouse — Rugby Investment & Results Analysis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --bg:#0D0F18;
+      --surface:#141720;
+      --card:#1C2030;
+      --border:rgba(255,255,255,.07);
+      --text:#F1F5F9;
+      --muted:rgba(255,255,255,.5);
+      --light:rgba(255,255,255,.3);
+      --hilton:#C9A84C;
+      --hilton-dim:rgba(201,168,76,.12);
+      --hilton-mid:rgba(201,168,76,.3);
+      --house:#CC1F2B;
+      --house-dim:rgba(204,31,43,.12);
+      --house-mid:rgba(204,31,43,.3);
+      --green:#10B981;
+      --amber:#F59E0B;
+    }
+
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;}
+    a{color:inherit;text-decoration:none;}
+
+    .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+    /* ── HERO ─────────────────────────── */
+    .hero{background:linear-gradient(160deg,#0D0F18 0%,#161025 50%,#0D0F18 100%);padding:80px 0 64px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none;}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:50px;padding:6px 16px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;}
+    .badge span{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);font-weight:700;line-height:1.1;color:var(--text);margin-bottom:16px;letter-spacing:-.02em;}
+    .hero h1 em{font-style:italic;color:var(--hilton);}
+    .hero-sub{font-size:17px;color:var(--muted);max-width:620px;line-height:1.75;margin-bottom:40px;}
+
+    .vs-strip{display:flex;align-items:center;gap:0;max-width:560px;}
+    .vs-school{flex:1;padding:20px 24px;border-radius:16px;display:flex;flex-direction:column;align-items:flex-start;}
+    .vs-school.h{background:var(--hilton-dim);border:1px solid var(--hilton-mid);}
+    .vs-school.m{background:var(--house-dim);border:1px solid var(--house-mid);}
+    .vs-school-name{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+    .vs-school-name.h{color:var(--hilton);}
+    .vs-school-name.m{color:var(--house);}
+    .vs-school-wins{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;line-height:1;}
+    .vs-school-sub{font-size:12px;color:var(--muted);margin-top:2px;}
+    .vs-divider{width:56px;text-align:center;font-family:'Playfair Display',serif;font-size:22px;color:var(--muted);flex-shrink:0;}
+
+    .hero-meta{display:flex;gap:32px;flex-wrap:wrap;margin-top:40px;padding-top:32px;border-top:1px solid var(--border);}
+    .hmeta{display:flex;flex-direction:column;gap:3px;}
+    .hmeta-val{font-size:20px;font-weight:700;color:var(--text);}
+    .hmeta-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+
+    /* ── SECTION ─────────────────────── */
+    section{padding:64px 0;}
+    section+section{border-top:1px solid var(--border);}
+    .section-tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(26px,3vw,38px);font-weight:700;color:var(--text);line-height:1.2;margin-bottom:10px;}
+    .section-sub{font-size:15px;color:var(--muted);line-height:1.75;max-width:640px;margin-bottom:40px;}
+
+    /* ── CARDS ───────────────────────── */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+
+    /* ── ERA TIMELINE ─────────────────── */
+    .timeline{display:flex;flex-direction:column;gap:0;}
+    .era{display:grid;grid-template-columns:160px 1fr 160px;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);}
+    .era:last-child{border-bottom:none;}
+    .era-label{font-size:13px;font-weight:700;color:var(--text);}
+    .era-years{font-size:11px;color:var(--muted);margin-top:2px;}
+    .era-bar-wrap{display:flex;align-items:center;gap:4px;height:32px;}
+    .era-bar{height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;transition:width .6s ease;min-width:0;}
+    .era-bar.h{background:var(--hilton);color:#000;}
+    .era-bar.m{background:var(--house);color:#fff;}
+    .era-bar.zero{width:4px;background:rgba(255,255,255,.1);}
+    .era-bar.neutral{background:rgba(255,255,255,.2);color:var(--text);}
+    .era-verdict{font-size:12px;font-weight:700;text-align:right;}
+    .era-verdict.h{color:var(--hilton);}
+    .era-verdict.m{color:var(--house);}
+    .era-verdict.even{color:var(--muted);}
+
+    /* ── INVESTMENT COMPARE ──────────── */
+    .inv-grid{display:grid;grid-template-columns:1fr 80px 1fr;gap:0;align-items:start;}
+    .inv-col{padding:0 8px;}
+    .inv-col.h .inv-school{color:var(--hilton);}
+    .inv-col.m .inv-school{color:var(--house);}
+    .inv-mid{display:flex;flex-direction:column;gap:0;align-items:center;}
+    .inv-school{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+    .inv-row{display:flex;flex-direction:column;gap:4px;padding:14px 0;border-bottom:1px solid var(--border);}
+    .inv-row:last-child{border-bottom:none;}
+    .inv-row-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--light);}
+    .inv-row-val{font-size:14px;color:var(--text);line-height:1.5;}
+    .inv-row-val strong{font-weight:700;}
+    .inv-mid-row{height:auto;display:flex;align-items:center;justify-content:center;padding:21px 0;border-bottom:1px solid var(--border);}
+    .inv-mid-row:last-child{border-bottom:none;}
+    .inv-mid-lbl{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--light);text-align:center;line-height:1.4;}
+
+    /* ── COACHING TABLE ──────────────── */
+    .coach-table{width:100%;border-collapse:collapse;}
+    .coach-table th{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:10px 16px;text-align:left;border-bottom:1px solid var(--border);}
+    .coach-table td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;color:var(--text);vertical-align:top;}
+    .coach-table tr:last-child td{border-bottom:none;}
+    .coach-table tr:hover td{background:rgba(255,255,255,.02);}
+    .role-tag{display:inline-block;background:rgba(255,255,255,.06);border-radius:50px;padding:2px 10px;font-size:10px;font-weight:700;letter-spacing:.05em;white-space:nowrap;}
+    .school-tag{font-size:10px;font-weight:800;letter-spacing:.08em;padding:3px 10px;border-radius:50px;}
+    .school-tag.h{background:var(--hilton-dim);color:var(--hilton);}
+    .school-tag.m{background:var(--house-dim);color:var(--house);}
+
+    /* ── ALUMNI ──────────────────────── */
+    .alumni-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .alumni-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+    .alumni-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;}
+    .alumni-crest{width:48px;height:48px;border-radius:10px;object-fit:contain;background:rgba(255,255,255,.05);padding:4px;}
+    .alumni-school-name{font-size:15px;font-weight:800;color:var(--text);}
+    .alumni-school-sub{font-size:12px;color:var(--muted);}
+    .alumni-list{padding:16px 24px;}
+    .alumni-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+    .alumni-item:last-child{border-bottom:none;}
+    .alumni-dot{width:8px;height:8px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+    .alumni-name{font-size:13px;font-weight:700;color:var(--text);}
+    .alumni-detail{font-size:12px;color:var(--muted);margin-top:1px;}
+
+    /* ── CORRELATION ─────────────────── */
+    .corr-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+    .corr-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;}
+    .corr-card h4{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;}
+    .corr-card p{font-size:13px;color:var(--muted);line-height:1.7;}
+    .corr-card.highlight-h{border-color:var(--hilton-mid);background:var(--hilton-dim);}
+    .corr-card.highlight-h h4{color:var(--hilton);}
+    .corr-card.highlight-m{border-color:var(--house-mid);background:var(--house-dim);}
+    .corr-card.highlight-m h4{color:var(--house);}
+
+    /* ── VERDICT ─────────────────────── */
+    .verdict{background:linear-gradient(135deg,rgba(201,168,76,.08) 0%,rgba(204,31,43,.08) 100%);border:1px solid var(--border);border-radius:20px;padding:40px;margin-top:32px;}
+    .verdict-tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+    .verdict h3{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--text);margin-bottom:16px;line-height:1.3;}
+    .verdict p{font-size:14px;color:var(--muted);line-height:1.8;max-width:720px;}
+    .verdict p+p{margin-top:12px;}
+
+    /* ── STAT PILLS ──────────────────── */
+    .stat-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;}
+    .stat-pill{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px;flex:1;min-width:140px;}
+    .stat-pill-val{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;line-height:1;}
+    .stat-pill-val.h{color:var(--hilton);}
+    .stat-pill-val.m{color:var(--house);}
+    .stat-pill-lbl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
+    /* ── FEE BAR ─────────────────────── */
+    .fee-compare{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;}
+    .fee-row{display:flex;align-items:center;gap:16px;margin-bottom:16px;}
+    .fee-row:last-child{margin-bottom:0;}
+    .fee-school{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;width:120px;flex-shrink:0;}
+    .fee-school.h{color:var(--hilton);}
+    .fee-school.m{color:var(--house);}
+    .fee-bar-wrap{flex:1;background:rgba(255,255,255,.05);border-radius:8px;overflow:hidden;height:36px;position:relative;}
+    .fee-bar{height:36px;border-radius:8px;display:flex;align-items:center;padding:0 14px;font-size:13px;font-weight:700;}
+    .fee-bar.h{background:linear-gradient(90deg,var(--hilton-mid),var(--hilton));color:#000;}
+    .fee-bar.m{background:linear-gradient(90deg,var(--house-mid),var(--house));color:#fff;}
+
+    /* ── MATCH RESULT HIGHLIGHT ──────── */
+    .result-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;text-align:center;}
+    .result-teams{display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:20px;}
+    .result-team-name{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
+    .result-team-name.h{color:var(--hilton);}
+    .result-team-name.m{color:var(--house);}
+    .result-score{font-family:'Playfair Display',serif;font-size:56px;font-weight:700;line-height:1;}
+    .result-score .hs{color:var(--hilton);}
+    .result-score .ms{color:var(--house);}
+    .result-score .sep{color:var(--muted);font-size:36px;margin:0 8px;}
+    .result-detail{font-size:13px;color:var(--muted);line-height:1.7;max-width:440px;margin:0 auto;}
+    .result-badge{display:inline-block;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:var(--green);border-radius:50px;padding:4px 16px;font-size:11px;font-weight:700;letter-spacing:.08em;margin-bottom:16px;}
+
+    /* ── PREDICTION ──────────────────── */
+    .pred-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+    .pred-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center;}
+    .pred-pct{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;margin-bottom:6px;}
+    .pred-pct.h{color:var(--hilton);}
+    .pred-pct.m{color:var(--house);}
+    .pred-pct.e{color:var(--muted);}
+    .pred-label{font-size:12px;font-weight:700;color:var(--muted);}
+    .pred-label.h{color:var(--hilton);}
+    .pred-label.m{color:var(--house);}
+    .pred-note{font-size:11px;color:var(--light);margin-top:6px;line-height:1.5;}
+
+    /* ── SCHOOL CRESTS ───────────────── */
+    .school-header{display:flex;align-items:center;gap:20px;margin-bottom:40px;}
+    .school-crest-wrap{display:flex;gap:16px;}
+    .school-crest-item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 20px;}
+    .school-crest-img{width:40px;height:40px;object-fit:contain;}
+    .school-crest-name{font-size:13px;font-weight:700;color:var(--text);}
+    .school-crest-sub{font-size:11px;color:var(--muted);}
+
+    /* ── PROGRESS BARS ───────────────── */
+    .progress-item{margin-bottom:16px;}
+    .progress-item:last-child{margin-bottom:0;}
+    .progress-label{display:flex;justify-content:space-between;margin-bottom:6px;}
+    .progress-label span{font-size:12px;font-weight:600;color:var(--muted);}
+    .progress-label strong{font-size:12px;font-weight:700;color:var(--text);}
+    .progress-track{background:rgba(255,255,255,.06);border-radius:50px;height:8px;overflow:hidden;}
+    .progress-fill{height:8px;border-radius:50px;}
+    .progress-fill.h{background:linear-gradient(90deg,var(--hilton-mid),var(--hilton));}
+    .progress-fill.m{background:linear-gradient(90deg,var(--house-mid),var(--house));}
+
+    /* ── FOOTER ──────────────────────── */
+    .footer{padding:40px 0;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+    .footer-brand{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--text);}
+    .footer-brand span{color:var(--hilton);}
+    .footer-note{font-size:12px;color:var(--light);}
+
+    @media(max-width:768px){
+      .era{grid-template-columns:1fr;gap:8px;}
+      .era-verdict{text-align:left;}
+      .inv-grid{grid-template-columns:1fr;}
+      .inv-mid{display:none;}
+      .alumni-grid{grid-template-columns:1fr;}
+      .corr-grid{grid-template-columns:1fr;}
+      .grid-2{grid-template-columns:1fr;}
+      .grid-3{grid-template-columns:1fr 1fr;}
+      .pred-grid{grid-template-columns:1fr;}
+      .vs-strip{flex-direction:column;}
+      .hero-meta{gap:20px;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="badge"><span></span>2026 Season — Second Leg Pending</div>
+    <h1>Hilton vs <em>Michaelhouse</em></h1>
+    <p class="hero-sub">A data-driven look at how rugby investment correlates with results in one of South Africa's oldest and most fiercely contested school derbies.</p>
+
+    <div class="vs-strip">
+      <div class="vs-school h">
+        <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Hilton_College_Badge.jpg" alt="Hilton College" style="width:72px;height:72px;object-fit:contain;margin-bottom:12px;filter:drop-shadow(0 4px 12px rgba(201,168,76,0.3));"/>
+        <div class="vs-school-name h">⚫ Hilton College</div>
+        <div class="vs-school-wins" style="color:var(--hilton);">100</div>
+        <div class="vs-school-sub">All-time wins</div>
+      </div>
+      <div class="vs-divider">vs</div>
+      <div class="vs-school m">
+        <img src="https://upload.wikimedia.org/wikipedia/en/c/c6/Michaelhouse_logo.png" alt="Michaelhouse" style="width:72px;height:72px;object-fit:contain;margin-bottom:12px;background:white;border-radius:8px;padding:4px;filter:drop-shadow(0 4px 12px rgba(204,31,43,0.3));"/>
+        <div class="vs-school-name m">🔴 Michaelhouse</div>
+        <div class="vs-school-wins" style="color:var(--house);">101</div>
+        <div class="vs-school-sub">All-time wins</div>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hmeta">
+        <span class="hmeta-val">10</span>
+        <span class="hmeta-lbl">Draws (all-time)</span>
+      </div>
+      <div class="hmeta">
+        <span class="hmeta-val">~120</span>
+        <span class="hmeta-lbl">Years of rivalry</span>
+      </div>
+      <div class="hmeta">
+        <span class="hmeta-val">211</span>
+        <span class="hmeta-lbl">Total matches played</span>
+      </div>
+      <div class="hmeta">
+        <span class="hmeta-val" style="color:var(--hilton);">Hilton</span>
+        <span class="hmeta-lbl">Modern era leader (2016–)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 2026 FIRST LEG ═══ -->
+<section>
+  <div class="wrap">
+    <p class="section-tag">2026 Season</p>
+    <h2 class="section-title">First leg: A last-second classic</h2>
+    <p class="section-sub">2 May 2026, Gilfillan Field (Hilton home). The teams delivered exactly what 120 years of rivalry demands.</p>
+
+    <div class="grid-2">
+      <div class="result-card">
+        <div class="result-badge">HILTON'S 100TH ALL-TIME WIN</div>
+        <div class="result-teams">
+          <span class="result-team-name h">Hilton</span>
+          <div class="result-score"><span class="hs">23</span><span class="sep">–</span><span class="ms">21</span></div>
+          <span class="result-team-name m">Michaelhouse</span>
+        </div>
+        <p class="result-detail">Hilton led 13–0 at half time. Michaelhouse scored three second-half tries to lead 21–20. Then, with the final whistle pending, substitute Nico Davel slotted a penalty. Hilton's historic 100th win.</p>
+      </div>
+
+      <div class="card">
+        <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Match scorers</p>
+        <div style="margin-bottom:20px;">
+          <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--hilton);margin-bottom:8px;">⚫ Hilton — 23 pts</p>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="font-size:13px;color:var(--text);">🏃 Tom Gurupira — 2 tries (incl. 40m solo)</div>
+            <div style="font-size:13px;color:var(--text);">🦶 John Grubb — 2 penalties + 1 conversion</div>
+            <div style="font-size:13px;color:var(--text);">🦶 James Peattie — 1 conversion</div>
+            <div style="font-size:13px;color:var(--text);">🦶 Nico Davel — last-second penalty (sub)</div>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--house);margin-bottom:8px;">🔴 Michaelhouse — 21 pts</p>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="font-size:13px;color:var(--text);">🏃 Alex Jankowitz — try + 3 conversions</div>
+            <div style="font-size:13px;color:var(--text);">🏃 Jed Reilly — try</div>
+            <div style="font-size:13px;color:var(--text);">🏃 Max Oliva — try</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;background:rgba(204,31,43,.06);border-color:var(--house-mid);">
+      <p style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--house);margin-bottom:8px;">Second Leg Context — 20 June 2026 | Meadows (Michaelhouse home)</p>
+      <p style="font-size:14px;color:var(--text);line-height:1.75;">Michaelhouse come in with momentum: they beat Maritzburg College 24–17 last weekend — the only team to defeat Hilton in the 2026 season. A Hilton win levels the all-time series at 101–101, a historic milestone. A Michaelhouse win hands them revenge, a sweep of home advantage, and extends their all-time lead to 102–100.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ERA BREAKDOWN ═══ -->
+<section>
+  <div class="wrap">
+    <p class="section-tag">Results Data</p>
+    <h2 class="section-title">The rivalry in eras</h2>
+    <p class="section-sub">31 matches across the modern era. Momentum runs in multi-year cycles — almost never a split year. Whoever leads leads big.</p>
+
+    <div class="stat-row">
+      <div class="stat-pill">
+        <div class="stat-pill-val h">16</div>
+        <div class="stat-pill-lbl">Hilton (modern era)</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-val m">15</div>
+        <div class="stat-pill-lbl">Michaelhouse (modern era)</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-val" style="color:var(--muted);">31</div>
+        <div class="stat-pill-lbl">Matches tracked</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-val" style="color:var(--green);">12–6</div>
+        <div class="stat-pill-lbl">Hilton (since 2016)</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="timeline">
+
+        <div class="era">
+          <div>
+            <div class="era-label">Michaelhouse dynasty</div>
+            <div class="era-years">2007 – 2010</div>
+          </div>
+          <div class="era-bar-wrap">
+            <div class="era-bar zero h"></div>
+            <div class="era-bar m" style="width:100%;flex:1;">7–0</div>
+          </div>
+          <div class="era-verdict m">🔴 Complete dominance</div>
+        </div>
+
+        <div class="era">
+          <div>
+            <div class="era-label">Transition years</div>
+            <div class="era-years">2011 – 2012</div>
+          </div>
+          <div class="era-bar-wrap">
+            <div class="era-bar h" style="flex:1;">2</div>
+            <div class="era-bar m" style="flex:1;">2</div>
+          </div>
+          <div class="era-verdict even">Even — shift beginning</div>
+        </div>
+
+        <div class="era">
+          <div>
+            <div class="era-label">Hilton breakthrough</div>
+            <div class="era-years">2013</div>
+          </div>
+          <div class="era-bar-wrap">
+            <div class="era-bar h" style="flex:1;">2–0</div>
+            <div class="era-bar zero m"></div>
+          </div>
+          <div class="era-verdict h">⚫ First clean sweep</div>
+        </div>
+
+        <div class="era">
+          <div>
+            <div class="era-label">Michaelhouse resurgence</div>
+            <div class="era-years">2014 – 2015</div>
+          </div>
+          <div class="era-bar-wrap">
+            <div class="era-bar zero h"></div>
+            <div class="era-bar m" style="flex:1;">4–0</div>
+          </div>
+          <div class="era-verdict m">🔴 Emphatic response</div>
+        </div>
+
+        <div class="era">
+          <div>
+            <div class="era-label" style="color:var(--hilton);">Hilton era</div>
+            <div class="era-years">2016 – 2025</div>
+          </div>
+          <div class="era-bar-wrap">
+            <div class="era-bar h" style="flex:2;">12</div>
+            <div class="era-bar m" style="flex:1;">6</div>
+          </div>
+          <div class="era-verdict h">⚫ 10-year upper hand</div>
+        </div>
+
+        <div class="era" style="border-bottom:none;">
+          <div>
+            <div class="era-label" style="color:var(--green);">2026 (so far)</div>
+            <div class="era-years">Leg 1 complete</div>
+          </div>
+          <div class="era-bar-wrap">
+            <div class="era-bar h" style="flex:1;">Hilton 23–21</div>
+          </div>
+          <div class="era-verdict h">⚫ Leg 2 pending</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">The sweep pattern</p>
+      <p style="font-size:13px;color:var(--muted);line-height:1.75;">In the modern era, only <strong style="color:var(--text);">6 of 15 years</strong> produced a split result. The other 9 were clean sweeps — one school won both legs. This is not a rivalry of fine margins year-to-year; it's a rivalry of momentum blocks. Whoever builds the stronger programme in a given cycle tends to own the fixture for 2–4 years at a stretch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INVESTMENT COMPARISON ═══ -->
+<section>
+  <div class="wrap">
+    <p class="section-tag">Programme Investment</p>
+    <h2 class="section-title">Where the money goes</h2>
+    <p class="section-sub">Both schools sit at the absolute top of South African private school fees. The gap between them is instructive — and the way each reinvests that difference may explain the last decade.</p>
+
+    <!-- FEES -->
+    <div class="fee-compare" style="margin-bottom:24px;">
+      <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Annual all-inclusive fees — 2026</p>
+      <div class="fee-row">
+        <span class="fee-school h">Hilton</span>
+        <div class="fee-bar-wrap">
+          <div class="fee-bar h" style="width:100%;">R451,557 / year — <em>#1 most expensive school in South Africa</em></div>
+        </div>
+      </div>
+      <div class="fee-row" style="margin-bottom:0;">
+        <span class="fee-school m">Michaelhouse</span>
+        <div class="fee-bar-wrap">
+          <div class="fee-bar m" style="width:88.5%;">R399,740 / year — <em>#2 most expensive school in South Africa</em></div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:14px;">Fee differential: <strong style="color:var(--text);">~R51,817/year per pupil</strong>. With ~600 Hilton pupils, that equates to approximately <strong style="color:var(--hilton);">R31M more revenue annually</strong> available for reinvestment in facilities, staff, and programme development.</p>
+    </div>
+
+    <!-- SIDE BY SIDE -->
+    <div class="inv-grid">
+      <div class="inv-col h">
+        <div class="inv-school h">⚫ Hilton College</div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Founded</div>
+          <div class="inv-row-val"><strong>1872</strong> — 154 years of history</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Enrolment</div>
+          <div class="inv-row-val"><strong>~600 boys</strong></div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Campus size</div>
+          <div class="inv-row-val"><strong>1,762 hectares</strong> incl. 550ha wildlife reserve</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Head of rugby</div>
+          <div class="inv-row-val"><strong>Greg Miller</strong> — Director of Rugby. Former professional rugby player. Former SA Schools (rugby & cricket).</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Head coach</div>
+          <div class="inv-row-val"><strong>Brad Macleod-Henderson</strong> — Former Sharks coach & player. Old Hiltonian. MBA. Hired from professional rugby system.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Director of sport</div>
+          <div class="inv-row-val"><strong>Burger Nel</strong> — KZN Sharks U16 coach. SA Rugby Elite Player Development Programme.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Age group staff</div>
+          <div class="inv-row-val">U14: Michael Horak<br/>U15: Lwazi Mvovo + Sam Mabombo<br/>U16: Cam Fraser<br/>= <strong>6+ dedicated rugby coaches total</strong></div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Performance centre</div>
+          <div class="inv-row-val"><strong>Draper-Gain Centre for Performance & Wellness</strong> — 1,000m² gym. 12 power racks. 4,000kg Olympic weight. 300m² covered turf track. Scrum machine. Physio + biokinetics rooms.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Home ground</div>
+          <div class="inv-row-val"><strong>Gilfillan Field</strong> — premier stadium. Historically significant as pioneer of KZN rugby.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">2026 national ranking</div>
+          <div class="inv-row-val"><strong>~8th nationally</strong>. Unbeaten in 2026 (9 from 9). Lost only 12 matches across 2022–2025.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Bursaries</div>
+          <div class="inv-row-val">Up to 95% fee coverage via Hilton College Endowment Foundation. Merit-based for disadvantaged learners. Talent pipeline for scholarship rugby.</div>
+        </div>
+      </div>
+
+      <div class="inv-mid">
+        <div class="inv-mid-lbl"></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">EST.</div></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">SIZE</div></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">CAMPUS</div></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">RUGBY<br/>DIR.</div></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">1ST XV<br/>COACH</div></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">SPORT<br/>DIR.</div></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">AGE<br/>GROUP</div></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">PERF.<br/>CENTRE</div></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">HOME<br/>GROUND</div></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">2026<br/>RANK</div></div>
+        <div class="inv-mid-row"><div class="inv-mid-lbl">BURSARIES</div></div>
+      </div>
+
+      <div class="inv-col m">
+        <div class="inv-school m">🔴 Michaelhouse</div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Founded</div>
+          <div class="inv-row-val"><strong>1896</strong> — 130 years of history</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Enrolment</div>
+          <div class="inv-row-val"><strong>~640 boys</strong></div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Campus</div>
+          <div class="inv-row-val">Balgowan valley, KZN Midlands. Meadows river setting.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Head coach</div>
+          <div class="inv-row-val"><strong>James Fleming</strong> — Head Coach. Widely respected for competitive development across all age groups.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Coaching depth</div>
+          <div class="inv-row-val">"Dedicated team of coaching experts" across the school. Specific age-group rugby coach names not publicly listed.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">&nbsp;</div>
+          <div class="inv-row-val">&nbsp;</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Teams fielded</div>
+          <div class="inv-row-val"><strong>20+ teams</strong> during winter season. Competes with significantly larger provincial schools.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Performance centre</div>
+          <div class="inv-row-val"><strong>High Performance Centre</strong> — dedicated sport scientists, biokineticists, professional weight training. Two world-class water-based astro facilities.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Home ground</div>
+          <div class="inv-row-val"><strong>Meadows</strong> — generations of rugby played on the banks. Intimate, atmospheric.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">2026 form</div>
+          <div class="inv-row-val">Promising. Described as "genuine contender" in early 2026 rankings. Beat Maritzburg College (who beat Hilton) 24–17 in June.</div>
+        </div>
+        <div class="inv-row">
+          <div class="inv-row-lbl">Bursaries</div>
+          <div class="inv-row-val">Bursary Endowment Trust (since 1980). Scholarships for outstanding pupils entering Grade 8. Valid for full 5-year tenure.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COACHING STAFF ═══ -->
+<section>
+  <div class="wrap">
+    <p class="section-tag">Coaching Infrastructure</p>
+    <h2 class="section-title">The staff that wins championships</h2>
+    <p class="section-sub">Hilton's most significant structural advantage is the depth and professionalism of their rugby coaching hierarchy — a system built with identifiable former professionals at every level.</p>
+
+    <div class="card" style="overflow-x:auto;">
+      <table class="coach-table">
+        <thead>
+          <tr>
+            <th>School</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Professional background</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="school-tag h">HILTON</span></td>
+            <td style="font-weight:700;">Greg Miller</td>
+            <td><span class="role-tag">Director of Rugby</span></td>
+            <td>Former professional rugby player. Former SA Schools rugby & cricket representative.</td>
+          </tr>
+          <tr>
+            <td><span class="school-tag h">HILTON</span></td>
+            <td style="font-weight:700;">Brad Macleod-Henderson</td>
+            <td><span class="role-tag">1st XV Head Coach</span></td>
+            <td>Former Sharks coach. Former Sharks player. Old Hiltonian (1993). MBA holder. Brought direct pro-rugby coaching methodology to the school programme.</td>
+          </tr>
+          <tr>
+            <td><span class="school-tag h">HILTON</span></td>
+            <td style="font-weight:700;">Burger Nel</td>
+            <td><span class="role-tag">Director of Sport / 1st XV Assist.</span></td>
+            <td>KZN Sharks U16 head coach. SA Rugby Elite Player Development Programme. Active link to professional rugby pipeline.</td>
+          </tr>
+          <tr>
+            <td><span class="school-tag h">HILTON</span></td>
+            <td style="font-weight:700;">Cam Fraser</td>
+            <td><span class="role-tag">U16 Coach</span></td>
+            <td>Dedicated age-group rugby specialist.</td>
+          </tr>
+          <tr>
+            <td><span class="school-tag h">HILTON</span></td>
+            <td style="font-weight:700;">Lwazi Mvovo + Sam Mabombo</td>
+            <td><span class="role-tag">U15 Coaches</span></td>
+            <td>Dual-coach setup at U15 level — unusual depth for school rugby.</td>
+          </tr>
+          <tr>
+            <td><span class="school-tag h">HILTON</span></td>
+            <td style="font-weight:700;">Michael Horak</td>
+            <td><span class="role-tag">U14 Coach</span></td>
+            <td>Foundation-level specialist. Builds the Hilton rugby culture from the moment boys arrive.</td>
+          </tr>
+          <tr>
+            <td><span class="school-tag m">MICHAELHOUSE</span></td>
+            <td style="font-weight:700;">James Fleming</td>
+            <td><span class="role-tag">Head Coach</span></td>
+            <td>Widely respected. Credited with developing Michaelhouse into a competitive programme across all age groups. Full coaching structure not publicly documented.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-top:16px;background:var(--hilton-dim);border-color:var(--hilton-mid);">
+      <p style="font-size:13px;font-weight:700;color:var(--hilton);margin-bottom:6px;">The coaching depth gap</p>
+      <p style="font-size:13px;color:var(--muted);line-height:1.75;">Hilton publishes 6 named, role-specific rugby coaches spanning every age group, with three of them holding or carrying active professional rugby credentials (Sharks, SA Rugby Development). Michaelhouse lists James Fleming and references a general coaching team. This is not necessarily a disadvantage — but it does suggest Hilton has made a more deliberate, systematic investment in coaching infrastructure across the full age pathway.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ALUMNI PIPELINE ═══ -->
+<section>
+  <div class="wrap">
+    <p class="section-tag">Alumni Pipeline</p>
+    <h2 class="section-title">Who both schools have produced</h2>
+    <p class="section-sub">Pro alumni aren't just a marketing metric — they attract talent, motivate current squads, and signal the credibility of a school's rugby programme to families making boarding decisions.</p>
+
+    <div class="alumni-grid">
+      <div class="alumni-card">
+        <div class="alumni-header">
+          <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Hilton_College_Badge.jpg" alt="Hilton College" class="alumni-crest"/>
+          <div>
+            <div class="alumni-school-name">Hilton College</div>
+            <div class="alumni-school-sub">Est. 1872 · Notable rugby alumni</div>
+          </div>
+        </div>
+        <div class="alumni-list">
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:var(--hilton);"></div>
+            <div>
+              <div class="alumni-name">Gary Teichmann</div>
+              <div class="alumni-detail">Springbok captain (1994). One of SA rugby's most respected leaders.</div>
+            </div>
+          </div>
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:var(--hilton);"></div>
+            <div>
+              <div class="alumni-name">Bobby Skinstad</div>
+              <div class="alumni-detail">Springbok captain (1997). SA Sevens representative. One of the most decorated Hiltonian rugby exports.</div>
+            </div>
+          </div>
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:var(--hilton);"></div>
+            <div>
+              <div class="alumni-name">Wayne Fyvie</div>
+              <div class="alumni-detail">Springbok representative (1996).</div>
+            </div>
+          </div>
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:var(--hilton);"></div>
+            <div>
+              <div class="alumni-name">Ethan Bester</div>
+              <div class="alumni-detail">Recent professional product — evidence the pipeline remains active.</div>
+            </div>
+          </div>
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:rgba(255,255,255,.2);"></div>
+            <div>
+              <div class="alumni-name">Hentie Martens</div>
+              <div class="alumni-detail">Springbok (1994).</div>
+            </div>
+          </div>
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:rgba(255,255,255,.2);"></div>
+            <div>
+              <div class="alumni-name">Roddy Grant</div>
+              <div class="alumni-detail">Scotland Sevens representative. Shows reach beyond borders.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alumni-card">
+        <div class="alumni-header">
+          <img src="https://upload.wikimedia.org/wikipedia/en/c/c6/Michaelhouse_logo.png" alt="Michaelhouse" class="alumni-crest" style="background:#fff;"/>
+          <div>
+            <div class="alumni-school-name">Michaelhouse</div>
+            <div class="alumni-school-sub">Est. 1896 · Notable rugby alumni</div>
+          </div>
+        </div>
+        <div class="alumni-list">
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:var(--house);"></div>
+            <div>
+              <div class="alumni-name">Patrick Lambie</div>
+              <div class="alumni-detail">56 Springbok caps. Two World Cups. Michaelhouse's most decorated rugby export. Part of the legendary 2007 Michaelhouse backline that swept the derby 7–0.</div>
+            </div>
+          </div>
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:var(--house);"></div>
+            <div>
+              <div class="alumni-name">Ross Cronjé</div>
+              <div class="alumni-detail">Springbok scrum-half. Played for Lions, Sharks. First Springbok call-up 2017 vs France. Also part of the 2007 golden backline.</div>
+            </div>
+          </div>
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:var(--house);"></div>
+            <div>
+              <div class="alumni-name">Ruan Combrinck</div>
+              <div class="alumni-detail">Springbok representative (2016). Lions wing. Third member of the famous 2007 backline.</div>
+            </div>
+          </div>
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:var(--house);"></div>
+            <div>
+              <div class="alumni-name">Michael Rhodes</div>
+              <div class="alumni-detail">Springbok flanker. Stormers, Saracens. One of SA's most travelled professional exports.</div>
+            </div>
+          </div>
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:var(--house);"></div>
+            <div>
+              <div class="alumni-name">Wandile Mlaba</div>
+              <div class="alumni-detail">Stormers, Western Province. Active professional. Recent product of the Michaelhouse system.</div>
+            </div>
+          </div>
+          <div class="alumni-item">
+            <div class="alumni-dot" style="background:rgba(255,255,255,.2);"></div>
+            <div>
+              <div class="alumni-name">Pat Cilliers</div>
+              <div class="alumni-detail">Springbok prop. Sharks, Lions, Stormers.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;background:var(--house-dim);border-color:var(--house-mid);">
+      <p style="font-size:13px;font-weight:700;color:var(--house);margin-bottom:6px;">The 2007 generation — and why it explains everything</p>
+      <p style="font-size:13px;color:var(--muted);line-height:1.75;">Lambie, Cronjé, and Combrinck were all in the Michaelhouse 1st XV around 2007–2010 — the exact years Michaelhouse swept the derby 7–0. Three future Springboks in one backline. This was not an investment story. This was a golden cohort, a once-in-a-generation alignment of exceptional individual talent that any school would have dominated with. When the cohort graduated, Michaelhouse's dominance faded almost immediately.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ THE CORRELATION ═══ -->
+<section>
+  <div class="wrap">
+    <p class="section-tag">The Analysis</p>
+    <h2 class="section-title">Investment vs results — what the data actually shows</h2>
+    <p class="section-sub">This is not a simple "spend more, win more" story. But there is a pattern worth understanding.</p>
+
+    <div class="corr-grid">
+      <div class="corr-card">
+        <h4>Factor 1 — The fee gap creates a reinvestment advantage</h4>
+        <p>At ~R52k more per pupil, Hilton generates roughly R31M more revenue annually. That margin has funded a world-class performance centre (Draper-Gain) and a deeper coaching staff than any school in the province. Resources don't guarantee wins, but they build the platform for consistency.</p>
+      </div>
+      <div class="corr-card">
+        <h4>Factor 2 — Coaching depth is Hilton's clearest structural edge</h4>
+        <p>Six named, role-specific rugby coaches with professional pedigree across every age group from U14 to 1st XV. This is a professional rugby club structure applied to a school. The payoff isn't one great year — it's the consistent production of technically developed players year after year, regardless of the talent level of any given cohort.</p>
+      </div>
+      <div class="corr-card highlight-h">
+        <h4>Factor 3 — The Draper-Gain Centre timing</h4>
+        <p>The Draper-Gain Centre for Performance & Wellness appears to have opened around 2024, but Hilton's coaching infrastructure build started well before that — likely from 2014–2016 when Brad Macleod-Henderson joined from the Sharks. Hilton's rise from 2016 onwards correlates directly with when their professional coaching model began to take hold.</p>
+      </div>
+      <div class="corr-card highlight-m">
+        <h4>Factor 4 — Michaelhouse's 2007–2010 dominance was a cohort anomaly</h4>
+        <p>Three future Springboks in one Michaelhouse backline. Lambie. Cronjé. Combrinck. This was an exceptional talent alignment, not a structural advantage. When that cohort left, so did the dominance. This suggests Michaelhouse's current programme, while excellent, may not have the same systematic depth to replicate that era without another extraordinary group.</p>
+      </div>
+    </div>
+
+    <div class="verdict">
+      <p class="verdict-tag">Verdict — Investment vs Results Correlation</p>
+      <h3>The evidence points to a moderate-to-strong correlation between structured investment and sustained results — with one major caveat.</h3>
+      <p>Hilton's investment in professional-grade coaching infrastructure from approximately 2014–2016 correlates with their decade of upper-hand rugby since 2016. The hiring of Brad Macleod-Henderson (former Sharks coach) as head coach, the layering of professional credentials across all age groups, and the construction of the Draper-Gain Centre represent a deliberate, sustained commitment to building a rugby programme that does not rely on any individual year group.</p>
+      <p>Michaelhouse's counter-argument is compelling: they were dominant while Lambie, Cronjé, and Combrinck were there — three boys who became World Cup Springboks. No coaching structure makes that happen. Great talent arrives and dominates. But when talent is more evenly distributed across both schools (as has been the case since 2016), the side with the deeper system wins more often than not.</p>
+      <p>The major caveat: school rugby is ultimately driven by <strong style="color:var(--text);">year groups</strong>. A single exceptional cohort can override any investment differential for 2–3 years. What investment buys is the floor — consistency in the years when you don't have that generational group. Hilton's record of losing only 12 matches in four seasons across all opponents speaks to exactly this: they don't have off-years.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 2026 SECOND LEG PREVIEW ═══ -->
+<section>
+  <div class="wrap">
+    <p class="section-tag">20 June 2026 — Meadows</p>
+    <h2 class="section-title">What happens next</h2>
+    <p class="section-sub">Everything built into this analysis points toward Saturday. Here's what the data suggests.</p>
+
+    <div class="pred-grid" style="margin-bottom:24px;">
+      <div class="pred-card">
+        <div class="pred-pct h">55%</div>
+        <div class="pred-label h">⚫ Hilton win</div>
+        <div class="pred-note">Modern era form, better coaching depth, 9 wins from 9 in 2026. History favours the team that won leg 1.</div>
+      </div>
+      <div class="pred-card">
+        <div class="pred-pct m">35%</div>
+        <div class="pred-label m">🔴 Michaelhouse win</div>
+        <div class="pred-note">Home advantage at Meadows. Momentum from beating the side that beat Hilton. Backs to the wall after losing leg 1.</div>
+      </div>
+      <div class="pred-card">
+        <div class="pred-pct e">10%</div>
+        <div class="pred-label">Draw</div>
+        <div class="pred-note">The rivalry occasionally produces stalemates. Both sides will know exactly what's at stake.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px;">What's really on the line</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--hilton);margin-top:6px;flex-shrink:0;"></div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;"><strong style="color:var(--text);">If Hilton win:</strong> The all-time series is level at 101–101. A historic milestone. Proof that the modern era investment model has closed a 120-year gap to dead level.</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--house);margin-top:6px;flex-shrink:0;"></div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;"><strong style="color:var(--text);">If Michaelhouse win:</strong> They hold the all-time lead at 102–100. They split the 2026 series. And — critically — they show that home ground at Meadows remains a fortress that Hilton's investment advantage cannot simply walk over.</p>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--green);margin-top:6px;flex-shrink:0;"></div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;"><strong style="color:var(--text);">The bigger picture:</strong> Michaelhouse just beat the team that beat Hilton. That's not a coincidence. If James Fleming has found something in the data film on Hilton that Maritzburg College exploited, Saturday could be very tight indeed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="wrap">
+  <div class="footer">
+    <div class="footer-brand">Built<span>By</span>MK</div>
+    <div class="footer-note">Data compiled from Rugby365, SA Rugby Hub, Pinnacle Schools, SuperSports Schools, Hilton College, Michaelhouse, Wikipedia. Analysis current as of 17 June 2026.</div>
+  </div>
+</div>
+
+</body>
+</html>
