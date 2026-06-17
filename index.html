@@ -4,9 +4,9 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BuiltByMK — Digital tools for people who know their subject</title>
-  <meta name="description" content="I build the pages, quizzes, and tools that take your expertise out of your head and put it somewhere people can find it, trust it, and buy it."/>
-  <meta property="og:title" content="BuiltByMK — Digital tools for people who know their subject"/>
-  <meta property="og:description" content="Digital tools and pages for people 40+ turning decades of expertise into an online income. No templates. No monthly fees."/>
+  <meta name="description" content="I build the pages, quizzes, tools, and MVPs that take your expertise or your idea live — fast, without the agency price tag."/>
+  <meta property="og:title" content="BuiltByMK — Digital tools and MVPs built fast"/>
+  <meta property="og:description" content="Pages, quizzes, tools, and MVPs for coaches, consultants, and businesses who need something live quickly. No templates. No monthly fees."/>
   <meta property="og:url" content="https://fitbodiesbymk-pixel.github.io/builtbymk/"/>
   <link rel="canonical" href="https://fitbodiesbymk-pixel.github.io/builtbymk/"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
@@ -35,8 +35,10 @@
     .nav-links{display:flex;align-items:center;gap:36px;}
     .nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color .18s;}
     .nav-links a:hover{color:var(--text);}
-    .nav-cta{background:var(--orange);color:#fff;border:none;border-radius:50px;padding:10px 22px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .2s;}
+    .nav-cta{background:var(--orange);color:#fff !important;border:none;border-radius:50px;padding:10px 22px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;transition:all .2s;}
     .nav-cta:hover{background:#E06520;transform:translateY(-1px);}
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:var(--text);transition:all .2s;}
 
     /* HERO */
     .hero{max-width:1100px;margin:0 auto;padding:100px 32px 80px;}
@@ -80,17 +82,13 @@
     .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;margin-top:48px;}
     .pcard{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;overflow:hidden;transition:all .2s;}
     .pcard:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.1);}
-    .pcard-preview{width:100%;aspect-ratio:16/7;overflow:hidden;border-bottom:1px solid var(--border);}
-    .pcard-preview img{width:100%;height:100%;object-fit:cover;object-position:top;}
-    .pcard-top{padding:24px 28px 20px;border-bottom:1px solid var(--border);}
-    .pcard-top.no-border{border-bottom:none;}
+    .pcard-top{padding:24px 28px 20px;border-bottom:none;}
     .pcard-emoji{font-size:36px;margin-bottom:14px;}
     .pcard-tag{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-bottom:8px;}
     .pcard-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.25;}
     .pcard-desc{font-size:13px;color:var(--muted);line-height:1.65;}
-    .pcard-bottom{padding:16px 28px;display:flex;align-items:center;justify-content:space-between;}
+    .pcard-bottom{padding:16px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
     .pcard-client{font-size:12px;color:var(--light);font-weight:500;}
-    .pcard-private{font-size:11px;font-weight:600;color:var(--light);letter-spacing:.06em;text-transform:uppercase;}
     .pcard-link{font-size:12px;font-weight:700;color:var(--orange);text-decoration:none;transition:opacity .18s;}
     .pcard-link:hover{opacity:.7;}
 
@@ -161,7 +159,11 @@
     /* RESPONSIVE */
     @media(max-width:768px){
       nav{padding:0 20px;}
-      .nav-links{display:none;}
+      .nav-hamburger{display:flex;}
+      .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(250,250,248,0.98);border-bottom:1px solid var(--border);flex-direction:column;padding:16px 20px;gap:0;}
+      .nav-links.open{display:flex;}
+      .nav-links a{padding:12px 0;border-bottom:1px solid var(--border);font-size:15px;}
+      .nav-links a:last-child{border-bottom:none;}
       .hero{padding:60px 20px 60px;}
       .hero-inner{grid-template-columns:1fr;gap:40px;}
       .hero-photo{aspect-ratio:3/2;order:-1;}
@@ -179,13 +181,16 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">Built<span>By</span>MK</a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#work">Work</a>
       <a href="#pricing">Pricing</a>
       <a href="#process">Process</a>
       <a href="#about">About</a>
       <a href="#pricing" class="nav-cta">Start a Project →</a>
     </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
@@ -194,8 +199,8 @@
   <div class="hero-inner">
     <div class="hero-left">
       <div class="hero-tag">BuiltByMK</div>
-      <h1>You've spent years getting good at something. Getting paid for it online is a <em>different problem.</em> That one's mine.</h1>
-      <p>I build the pages, quizzes, and tools that take your expertise out of your head and put it somewhere people can find it, trust it, and buy it.</p>
+      <h1>You've got the expertise, the idea, or both. Getting either online is a <em>different problem.</em> That one's mine.</h1>
+      <p>I build the pages, quizzes, tools, and MVPs that take what you know or what you're testing and put it somewhere real — live on the web, fast, and without the agency price tag.</p>
       <div class="hero-actions">
         <a href="#pricing" class="btn-primary">Start a Project →</a>
         <a href="#work" class="btn-ghost">See the work ↓</a>
@@ -268,15 +273,12 @@
     <p class="section-sub">Every project starts with a person who knows their subject. The build is just making that knowledge visible and usable.</p>
     <div class="portfolio-grid">
 
-      <!-- BEYOND THE SCALE -->
       <div class="pcard">
-        <div class="pcard-preview">
-          <img src="beyondthescale-screenshot.png" alt="Beyond the Scale — telehealth coaching site"/>
-        </div>
-        <div class="pcard-top no-border">
+        <div class="pcard-top">
+          <div class="pcard-emoji">⚖️</div>
           <p class="pcard-tag">Sales &amp; Booking Page</p>
           <h3 class="pcard-title">Beyond the Scale</h3>
-          <p class="pcard-desc">Coach Thartz had the expertise and no online presence. We built his positioning, his pitch, and his site from scratch — dark navy, bold orange, Calendly integrated. Now when someone asks what he does, he sends one link.</p>
+          <p class="pcard-desc">Coach Thartz had the expertise and no online presence. We built his positioning, his pitch, and his site from scratch. Now when someone asks what he does, he sends one link.</p>
         </div>
         <div class="pcard-bottom">
           <span class="pcard-client">Coach Thartz</span>
@@ -284,12 +286,9 @@
         </div>
       </div>
 
-      <!-- FITBODIES BY MK -->
       <div class="pcard">
-        <div class="pcard-preview">
-          <img src="fitbodiesbymk-screenshot.png" alt="Fitbodies by MK — personal coaching site"/>
-        </div>
-        <div class="pcard-top no-border">
+        <div class="pcard-top">
+          <div class="pcard-emoji">💪</div>
           <p class="pcard-tag">Coaching Website</p>
           <h3 class="pcard-title">Fitbodies by MK</h3>
           <p class="pcard-desc">My own move online. Years of in-person training with no web presence. I needed offers, a price I could stand behind, and somewhere professional to send people — so I built it myself. The same process I now run for other coaches.</p>
@@ -300,12 +299,9 @@
         </div>
       </div>
 
-      <!-- SUPERPOWER QUIZ -->
       <div class="pcard">
-        <div class="pcard-preview">
-          <img src="superpower-quiz-screenshot.png" alt="What's Your Sales Superpower — quiz"/>
-        </div>
-        <div class="pcard-top no-border">
+        <div class="pcard-top">
+          <div class="pcard-emoji">⚡</div>
           <p class="pcard-tag">Lead Gen Quiz Tool</p>
           <h3 class="pcard-title">What's Your Sales Superpower?</h3>
           <p class="pcard-desc">A 6-question quiz that cuts through the noise and tells coaches exactly what's blocking their sales — and the specific strength they already have to move past it. Personalised result, no email required.</p>
@@ -316,13 +312,12 @@
         </div>
       </div>
 
-      <!-- QUIZ FUNNEL BLUEPRINT BUILDER -->
       <div class="pcard">
-        <div class="pcard-top" style="border-bottom:none;">
+        <div class="pcard-top">
           <div class="pcard-emoji">🗺️</div>
           <p class="pcard-tag">Business Tool / MVP</p>
           <h3 class="pcard-title">Quiz Funnel Blueprint Builder</h3>
-          <p class="pcard-desc">A 4-step wizard that helps coaches design their entire quiz funnel — pick your quiz type, define your transformation, build your questions, map your result paths — and outputs a ready-to-hand blueprint at the end. No agency needed.</p>
+          <p class="pcard-desc">A 4-step wizard that helps coaches design their entire quiz funnel — pick your quiz type, define your transformation, build your questions, map your result paths — and outputs a ready-to-hand blueprint at the end.</p>
         </div>
         <div class="pcard-bottom">
           <span class="pcard-client">BuiltByMK</span>
@@ -330,9 +325,8 @@
         </div>
       </div>
 
-      <!-- CME TRACKER -->
       <div class="pcard">
-        <div class="pcard-top" style="border-bottom:none;">
+        <div class="pcard-top">
           <div class="pcard-emoji">🤸</div>
           <p class="pcard-tag">Client Training Tool</p>
           <h3 class="pcard-title">Calisthenics Made Easy</h3>
@@ -344,9 +338,8 @@
         </div>
       </div>
 
-      <!-- OVER 40 BODY CHECK -->
       <div class="pcard">
-        <div class="pcard-top" style="border-bottom:none;">
+        <div class="pcard-top">
           <div class="pcard-emoji">📋</div>
           <p class="pcard-tag">Lead Gen Quiz Tool</p>
           <h3 class="pcard-title">Over 40 Body Check</h3>
@@ -367,29 +360,12 @@
   <div class="section-inner">
     <p class="section-tag">Pricing</p>
     <h2 class="section-heading">Straightforward. No surprises.</h2>
-    <p class="section-sub">Two packages depending on what you need. Every project includes full ownership of what's built. No templates, no monthly fees, no dependency on me to make changes.</p>
+    <p class="section-sub">Three options depending on what you're building. Every project includes full ownership of what's built. No templates, no monthly fees, no dependency on me to make changes.</p>
     <div class="pricing-grid">
-      <div class="price-card">
-        <p class="price-name">MVP Build</p>
-        <div class="price-amount">$1,500</div>
-        <p class="price-time">Delivered in 3 days</p>
-        <div class="price-divider"></div>
-        <p class="price-for">Best for</p>
-        <p class="price-desc">You have a business idea and need to test it fast — before spending real money on development. I build a working, deployed product you can put in front of real people.</p>
-        <ul class="price-items">
-          <li>Full functional web tool or app</li>
-          <li>Live URL, ready to share the same day</li>
-          <li>Discovery call + written spec before build</li>
-          <li>One revision round</li>
-          <li>Full ownership, no ongoing fees</li>
-        </ul>
-        <div class="price-guarantee">If it doesn't match what we agreed, I fix it. Simple.</div>
-        <a href="#start" class="price-pay">Start a conversation →</a>
-      </div>
       <div class="price-card">
         <p class="price-name">First Client Ready</p>
         <div class="price-amount">$297</div>
-        <p class="price-time">Delivered in 48-72 hours</p>
+        <p class="price-time">Delivered in 48–72 hours</p>
         <div class="price-divider"></div>
         <p class="price-for">Best for</p>
         <p class="price-desc">Your offer, built and live. Go from "I have no web presence" to a single link you can send with confidence — designed to book your first paying client.</p>
@@ -405,9 +381,9 @@
       </div>
       <div class="price-card featured">
         <div class="price-badge">Most Popular</div>
-        <p class="price-name">Attract & Convert</p>
+        <p class="price-name">Attract &amp; Convert</p>
         <div class="price-amount">$550</div>
-        <p class="price-time">Delivered in 3-5 days</p>
+        <p class="price-time">Delivered in 3–5 days</p>
         <div class="price-divider"></div>
         <p class="price-for">Best for</p>
         <p class="price-desc">A quiz, audit tool, or lead magnet that pulls in your ideal client, gives them something genuinely useful, and brings them to you already sold on your perspective.</p>
@@ -421,6 +397,23 @@
         <div class="price-guarantee">If it doesn't match what we agreed, I fix it. Simple.</div>
         <a href="https://buy.stripe.com/28E3cu46TbPHamobfa53O06" target="_blank" class="price-pay">Pay $550 →</a>
       </div>
+      <div class="price-card">
+        <p class="price-name">MVP Build</p>
+        <div class="price-amount">$1,500</div>
+        <p class="price-time">Delivered in 3 days</p>
+        <div class="price-divider"></div>
+        <p class="price-for">Best for</p>
+        <p class="price-desc">You have a business idea and need to test it before spending real money on development. I build a working, deployed product you can put in front of real people.</p>
+        <ul class="price-items">
+          <li>Full functional web tool or app</li>
+          <li>Live URL, ready to share</li>
+          <li>Discovery call + written spec before build</li>
+          <li>One revision round</li>
+          <li>Full ownership, no ongoing fees</li>
+        </ul>
+        <div class="price-guarantee">If it doesn't match what we agreed, I fix it. Simple.</div>
+        <a href="#start" class="price-pay">Start a conversation →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -430,7 +423,7 @@
   <div class="section-inner">
     <p class="section-tag">How it works</p>
     <h2 class="section-heading">Less process than you're expecting.</h2>
-    <p class="section-sub">No lengthy discovery calls. No 40-page briefs. You tell me what you need and I ask for exactly what I need to build it. Usually less than you think.</p>
+    <p class="section-sub">You tell me what you need. I tell you what I need from you to build it — usually less than you think. Then we build it.</p>
     <div class="process-steps">
       <div class="step">
         <div class="step-num">01</div>
@@ -440,7 +433,7 @@
       <div class="step">
         <div class="step-num">02</div>
         <h3>I come back within 24 hours</h3>
-        <p>I'll confirm whether I can help, which package fits, and exactly what I'll need from you to start.</p>
+        <p>I'll confirm whether I can help, which option fits, and exactly what I'll need from you to start.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
@@ -466,9 +459,9 @@
       <div class="about-text">
         <p class="about-tag">About MK</p>
         <h2>I built tools for my own business first. Then people started asking who built them.</h2>
-        <p>I'm a fitness coach based in Doha, Qatar. I've spent over a decade helping people in their 40s and beyond get stronger, build consistency, and stop starting over. At some point I needed a way to show that work online. I couldn't find anything that did what I needed without costing a fortune or looking like a template, so I built it myself.</p>
-        <p>What I build now is the same thing: tools and pages that reflect real expertise. Not generic. Not templated. Built around the specific person and the specific problem they solve.</p>
-        <p>If you know your subject and you're serious about building something online, that's enough. The rest I can handle.</p>
+        <p>I'm a fitness coach based in Doha, Qatar. I've spent over a decade helping people in their 40s and beyond get stronger and stop starting over. At some point I needed an online presence — something that actually reflected what I do, without costing a fortune or looking like every other coaching site. I couldn't find that. So I built it myself.</p>
+        <p>Other coaches started asking who built it. Then business owners started asking if I could do the same for their ideas — a tool, a product, something to test before committing to a full development team. The answer to both turned out to be the same: yes, and faster than they expected.</p>
+        <p>If you have the expertise or the idea, that's enough. The rest I can handle.</p>
       </div>
     </div>
   </div>
@@ -477,7 +470,7 @@
 <!-- CTA STRIP -->
 <div class="cta-strip">
   <h2>You already have the expertise. Let's build the thing that shows it.</h2>
-  <p>Pick your option below and pay to get started. I'll be in touch within 24 hours to kick things off.</p>
+  <p>Pick the option that fits and get started. I'll be in touch within 24 hours.</p>
   <a href="#pricing" class="btn-primary">See pricing →</a>
 </div>
 
@@ -548,6 +541,12 @@
 <footer>
   <p>© 2026 BuiltByMK &nbsp;·&nbsp; <a href="mailto:fitbodiesbymk@gmail.com">fitbodiesbymk@gmail.com</a></p>
 </footer>
+
+<script>
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>
