@@ -214,17 +214,104 @@
     .footer-note{font-size:12px;color:var(--light);}
 
     @media(max-width:768px){
-      .era{grid-template-columns:1fr;gap:8px;}
-      .era-verdict{text-align:left;}
+      /* ── Layout ── */
+      .wrap{padding:0 16px;}
+      section{padding:40px 0;}
+
+      /* ── Hero ── */
+      .hero{padding:48px 0 40px;}
+      .hero h1{font-size:34px;}
+      .hero-sub{font-size:14px;margin-bottom:28px;}
+      .badge{font-size:11px;padding:5px 13px;}
+
+      /* VS strip — stack vertically */
+      .vs-strip{flex-direction:column;max-width:100%;gap:0;}
+      .vs-school{width:100%;flex-direction:row;align-items:center;gap:16px;padding:16px 20px;}
+      .vs-school img{width:52px;height:52px;margin-bottom:0 !important;}
+      .vs-school-wins{font-size:32px;}
+      .vs-divider{padding:4px 0;font-size:18px;}
+
+      /* Hero meta — 2x2 grid */
+      .hero-meta{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;padding-top:24px;}
+      .hmeta-val{font-size:18px;}
+      .hmeta-lbl{font-size:10px;}
+
+      /* ── Section headings ── */
+      .section-title{font-size:24px;}
+      .section-sub{font-size:14px;margin-bottom:28px;}
+
+      /* ── Cards ── */
+      .card{padding:20px 16px;}
+      .verdict{padding:24px 20px;}
+      .verdict h3{font-size:20px;}
+      .result-card{padding:24px 16px;}
+
+      /* ── All 2-col grids → 1 col ── */
+      .grid-2{grid-template-columns:1fr;}
+      .grid-3{grid-template-columns:1fr;}
+      .corr-grid{grid-template-columns:1fr;}
+      .alumni-grid{grid-template-columns:1fr;}
+      .pred-grid{grid-template-columns:1fr 1fr;gap:8px;}
+
+      /* ── Stat pills ── */
+      .stat-row{gap:8px;}
+      .stat-pill{min-width:calc(50% - 8px);}
+      .stat-pill-val{font-size:26px;}
+      .stat-pill-lbl{font-size:10px;}
+
+      /* ── Match result ── */
+      .result-score{font-size:40px;}
+      .result-score .sep{font-size:26px;}
+      .result-teams{gap:12px;}
+      .result-badge{font-size:10px;padding:3px 12px;}
+
+      /* ── Era timeline ── */
+      .era{grid-template-columns:1fr;gap:6px;padding:16px 0;}
+      .era-label{font-size:13px;}
+      .era-verdict{text-align:left;font-size:11px;}
+      .era-bar{font-size:11px;}
+
+      /* ── Fee bars ── */
+      .fee-compare{padding:20px 16px;}
+      .fee-row{flex-direction:column;gap:6px;margin-bottom:14px;}
+      .fee-school{width:auto;font-size:11px;}
+      .fee-bar{font-size:11px;padding:0 12px;}
+      .fee-bar em{display:none;}
+
+      /* ── Investment comparison ── */
       .inv-grid{grid-template-columns:1fr;}
       .inv-mid{display:none;}
+      .inv-col{padding:0;}
+      .inv-school{font-size:12px;margin-bottom:12px;padding-bottom:10px;}
+      .inv-row-val{font-size:13px;}
+
+      /* ── Coach table — scrollable ── */
+      .coach-table th{padding:8px 10px;font-size:9px;}
+      .coach-table td{padding:10px 10px;font-size:12px;}
+      .school-tag{font-size:9px;padding:2px 7px;}
+      .role-tag{font-size:9px;padding:2px 7px;}
+
+      /* ── Alumni ── */
       .alumni-grid{grid-template-columns:1fr;}
-      .corr-grid{grid-template-columns:1fr;}
-      .grid-2{grid-template-columns:1fr;}
-      .grid-3{grid-template-columns:1fr 1fr;}
-      .pred-grid{grid-template-columns:1fr;}
-      .vs-strip{flex-direction:column;}
-      .hero-meta{gap:20px;}
+      .alumni-header{padding:16px 20px;}
+      .alumni-crest{width:40px;height:40px;}
+      .alumni-list{padding:12px 20px;}
+      .alumni-name{font-size:12px;}
+      .alumni-detail{font-size:11px;}
+
+      /* ── Correlation cards ── */
+      .corr-card{padding:18px 16px;}
+      .corr-card h4{font-size:13px;}
+      .corr-card p{font-size:12px;}
+
+      /* ── Prediction ── */
+      .pred-pct{font-size:28px;}
+      .pred-label{font-size:11px;}
+      .pred-note{font-size:10px;}
+      .pred-card{padding:16px 12px;}
+
+      /* ── Footer ── */
+      .footer{flex-direction:column;gap:8px;padding:28px 0;text-align:center;}
     }
   </style>
 </head>
@@ -579,7 +666,8 @@
     <h2 class="section-title">The staff that wins championships</h2>
     <p class="section-sub">Hilton's most significant structural advantage is the depth and professionalism of their rugby coaching hierarchy — a system built with identifiable former professionals at every level.</p>
 
-    <div class="card" style="overflow-x:auto;">
+    <div class="card" style="padding:0;">
+      <div style="overflow-x:auto;padding:28px 28px 0;">
       <table class="coach-table">
         <thead>
           <tr>
@@ -634,6 +722,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
 
     <div class="card" style="margin-top:16px;background:var(--hilton-dim);border-color:var(--hilton-mid);">
