@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BuiltByMK — Client Onboarding</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --orange:#F5782A;
+      --orange-light:#FEF3EC;
+      --bg:#FAFAF8;
+      --alt:#F3F3F0;
+      --dark:#0C0A09;
+      --text:#1C1917;
+      --muted:#78716C;
+      --light:#A8A29E;
+      --border:#E8E4DC;
+      --surface:#FFFFFF;
+      --green:#16A34A;
+      --green-light:#F0FDF4;
+      --green-border:#86EFAC;
+    }
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+    .wrap{max-width:660px;margin:0 auto;padding:48px 24px 80px;}
+    .logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--text);text-decoration:none;display:inline-block;margin-bottom:48px;}
+    .logo span{color:var(--orange);}
+
+    /* ── GENERATOR ─────────────────────────── */
+    .gen-tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+    .gen-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;line-height:1.2;color:var(--text);margin-bottom:8px;}
+    .gen-sub{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:36px;}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .field{margin-bottom:20px;}
+    .field label{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+    .field input,.field select,.field textarea{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text);outline:none;transition:border-color .18s;}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange);}
+    .field textarea{min-height:96px;resize:vertical;line-height:1.6;}
+    .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2378716C' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer;}
+    .field-note{font-size:12px;color:var(--light);margin-top:5px;}
+    .field input[readonly]{background:var(--alt);cursor:default;color:var(--muted);}
+    .divider{height:1px;background:var(--border);margin:28px 0;}
+    .gen-btn{width:100%;background:var(--orange);color:#fff;border:none;border-radius:50px;padding:16px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;}
+    .gen-btn:hover{background:#E06520;transform:translateY(-1px);box-shadow:0 6px 24px rgba(245,120,42,0.25);}
+    .link-box{display:none;margin-top:24px;background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:20px;}
+    .link-box.show{display:block;}
+    .link-box-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .link-url{font-size:13px;color:var(--text);word-break:break-all;background:var(--alt);border-radius:8px;padding:12px;margin-bottom:14px;line-height:1.6;}
+    .copy-btn{background:var(--dark);color:#fff;border:none;border-radius:50px;padding:10px 24px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;}
+    .copy-btn:hover{background:#333;}
+    .copy-btn.copied{background:var(--green);}
+
+    /* ── CLIENT VIEW ───────────────────────── */
+    #clientView{display:none;}
+    .steps{display:flex;align-items:center;gap:8px;margin-bottom:48px;}
+    .sdot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;transition:all .3s;}
+    .sdot.active{background:var(--orange);color:#fff;}
+    .sdot.done{background:var(--green);color:#fff;}
+    .sdot.inactive{background:var(--border);color:var(--light);}
+    .sline{flex:1;height:2px;background:var(--border);transition:background .3s;}
+    .sline.done{background:var(--green);}
+    .csection{margin-bottom:56px;}
+    .step-num{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+    .csection h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1.2;color:var(--text);margin-bottom:14px;}
+    .csection>p{font-size:15px;color:var(--muted);line-height:1.75;}
+    .scope-card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:8px 24px;margin-top:24px;}
+    .scope-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding:14px 0;border-bottom:1px solid var(--border);}
+    .scope-row:last-child{border-bottom:none;}
+    .slabel{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--light);flex-shrink:0;padding-top:2px;}
+    .sval{font-size:14px;color:var(--text);line-height:1.65;text-align:right;}
+    .sval.big{font-size:18px;font-weight:700;}
+    .excl-box{background:var(--alt);border-radius:12px;padding:16px;margin-top:16px;}
+    .excl-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-bottom:6px;}
+    .excl-box p{font-size:13px;color:var(--muted);line-height:1.65;}
+    .deposit-card{background:var(--dark);border-radius:20px;padding:36px 32px;margin-top:24px;text-align:center;}
+    .dep-label{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:10px;}
+    .dep-amount{font-family:'Playfair Display',serif;font-size:60px;font-weight:700;color:#fff;line-height:1;margin-bottom:8px;}
+    .dep-note{font-size:13px;color:rgba(255,255,255,.45);margin-bottom:28px;}
+    .dep-btn{display:inline-block;background:var(--orange);color:#fff;border-radius:50px;padding:16px 40px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;text-decoration:none;transition:all .2s;}
+    .dep-btn:hover{background:#E06520;transform:translateY(-1px);box-shadow:0 6px 24px rgba(245,120,42,0.4);}
+    .paid-row{text-align:center;margin-top:18px;}
+    .paid-btn{background:none;border:1.5px solid var(--border);color:var(--muted);border-radius:50px;padding:12px 28px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;}
+    .paid-btn:hover{border-color:var(--green);color:var(--green);}
+    .locked-msg{background:var(--alt);border-radius:14px;padding:24px;text-align:center;margin-top:24px;}
+    .locked-msg p{font-size:14px;color:var(--light);}
+    .cform .field{margin-bottom:20px;}
+    .submit-btn{width:100%;background:var(--orange);color:#fff;border:none;border-radius:50px;padding:16px;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;margin-top:4px;}
+    .submit-btn:hover{background:#E06520;transform:translateY(-1px);}
+    .success-card{background:var(--green-light);border:1.5px solid var(--green-border);border-radius:16px;padding:32px;text-align:center;margin-top:24px;}
+    .success-card h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#15803D;margin-bottom:8px;}
+    .success-card p{font-size:14px;color:var(--green);line-height:1.6;}
+
+    @media(max-width:580px){
+      .wrap{padding:32px 20px 64px;}
+      .row{grid-template-columns:1fr;}
+      .dep-amount{font-size:44px;}
+      .scope-row{flex-direction:column;gap:4px;}
+      .sval{text-align:left;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ GENERATOR ═══════════════════ -->
+<div id="generatorView">
+  <div class="wrap">
+    <a href="https://fitbodiesbymk-pixel.github.io/builtbymk/" class="logo">Built<span>By</span>MK</a>
+
+    <p class="gen-tag">Client Onboarding</p>
+    <h1 class="gen-title">Generate a client link</h1>
+    <p class="gen-sub">Fill in the project details. Hit generate. Send the link. Your client handles the rest.</p>
+
+    <div class="row">
+      <div class="field">
+        <label>Client first name</label>
+        <input type="text" id="g_name" placeholder="e.g. Sarah"/>
+      </div>
+      <div class="field">
+        <label>Project title</label>
+        <input type="text" id="g_project" placeholder="e.g. Lead Gen Quiz"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label>Package</label>
+        <select id="g_tier" onchange="handleTier()">
+          <option value="">Select a package</option>
+          <option value="297">$297 — First Client Ready</option>
+          <option value="550">$550 — Attract &amp; Convert</option>
+          <option value="1500">$1,500 — MVP Build</option>
+          <option value="custom">Custom price</option>
+        </select>
+      </div>
+      <div class="field" id="depositDisplay" style="display:none;">
+        <label>Deposit due</label>
+        <input type="text" id="g_deposit" readonly/>
+      </div>
+      <div class="field" id="customPriceField" style="display:none;">
+        <label>Custom price ($)</label>
+        <input type="number" id="g_customprice" placeholder="e.g. 900" oninput="calcCustomDeposit()"/>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Stripe payment link</label>
+      <input type="url" id="g_stripe" placeholder="https://buy.stripe.com/..."/>
+      <p class="field-note" id="g_stripeNote"></p>
+    </div>
+
+    <div class="field">
+      <label>Scope — what's included</label>
+      <textarea id="g_scope" placeholder="Describe what you're building and what's included. This is exactly what your client will see."></textarea>
+    </div>
+
+    <div class="field">
+      <label>What's NOT included</label>
+      <textarea id="g_excl" placeholder="e.g. Email sequences, ongoing edits, copywriting, photography" style="min-height:72px;"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Delivery timeline</label>
+      <input type="text" id="g_delivery" placeholder="e.g. 3 business days from content received"/>
+    </div>
+
+    <div class="divider"></div>
+
+    <button class="gen-btn" onclick="generate()">Generate client link →</button>
+
+    <div class="link-box" id="linkBox">
+      <p class="link-box-label">Client link — copy and send</p>
+      <div class="link-url" id="linkUrl"></div>
+      <button class="copy-btn" id="copyBtn" onclick="copyLink()">Copy link</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CLIENT VIEW ═══════════════════ -->
+<div id="clientView">
+  <div class="wrap">
+    <a href="https://fitbodiesbymk-pixel.github.io/builtbymk/" class="logo">Built<span>By</span>MK</a>
+
+    <div class="steps">
+      <div class="sdot active" id="d1">1</div>
+      <div class="sline" id="l1"></div>
+      <div class="sdot inactive" id="d2">2</div>
+      <div class="sline" id="l2"></div>
+      <div class="sdot inactive" id="d3">3</div>
+    </div>
+
+    <!-- STEP 1: SCOPE -->
+    <div class="csection">
+      <p class="step-num">Step 1 of 3 — The brief</p>
+      <h2 id="briefHeading">Here's what we're building.</h2>
+      <p>Read through the scope below. If everything looks right, scroll down and pay your deposit to get things moving.</p>
+
+      <div class="scope-card">
+        <div class="scope-row">
+          <span class="slabel">Project</span>
+          <span class="sval" id="cv_project"></span>
+        </div>
+        <div class="scope-row">
+          <span class="slabel">Includes</span>
+          <span class="sval" id="cv_scope"></span>
+        </div>
+        <div class="scope-row">
+          <span class="slabel">Delivery</span>
+          <span class="sval" id="cv_delivery"></span>
+        </div>
+        <div class="scope-row">
+          <span class="slabel">Total</span>
+          <span class="sval big" id="cv_total"></span>
+        </div>
+      </div>
+
+      <div class="excl-box" id="exclBox">
+        <p class="excl-label">Not included</p>
+        <p id="cv_excl"></p>
+      </div>
+    </div>
+
+    <!-- STEP 2: DEPOSIT -->
+    <div class="csection">
+      <p class="step-num">Step 2 of 3 — Deposit</p>
+      <h2>Pay your deposit</h2>
+      <p>This confirms your spot and gets the build started. The balance is due on delivery, before files are handed over.</p>
+
+      <div class="deposit-card">
+        <p class="dep-label">Deposit due today</p>
+        <div class="dep-amount" id="cv_deposit"></div>
+        <p class="dep-note" id="cv_depNote"></p>
+        <a id="cv_stripeBtn" href="#" target="_blank" class="dep-btn">Pay deposit →</a>
+      </div>
+
+      <div class="paid-row">
+        <button class="paid-btn" onclick="unlock()">I've paid my deposit ✓</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: CONTENT -->
+    <div class="csection">
+      <p class="step-num">Step 3 of 3 — Your content</p>
+      <h2>Send your content</h2>
+      <p>Fill in everything below. The more detail you give me, the faster and better the build. I'll be in touch within 24 hours of receiving this.</p>
+
+      <div class="locked-msg" id="lockedMsg">
+        <p>Complete your deposit above to unlock this step.</p>
+      </div>
+
+      <form class="cform" id="contentForm" action="https://formspree.io/f/mvzywykn" method="POST" onsubmit="submitForm(event)" style="display:none;margin-top:24px;">
+        <input type="hidden" name="_subject" id="f_subject"/>
+        <input type="hidden" name="client_name" id="f_client"/>
+        <input type="hidden" name="project" id="f_proj"/>
+
+        <div class="field">
+          <label>Your business name</label>
+          <input type="text" name="business_name" placeholder="What's your business called?" required/>
+        </div>
+
+        <div class="field">
+          <label>What you do (1–2 sentences)</label>
+          <textarea name="what_you_do" placeholder="Describe what you do and who you help. Write it how you'd say it to someone you just met." required></textarea>
+        </div>
+
+        <div class="field">
+          <label>Who it's for</label>
+          <textarea name="target_audience" placeholder="Describe your ideal client. Age, situation, what they're struggling with, what they want." required></textarea>
+        </div>
+
+        <div class="field">
+          <label>Main message</label>
+          <textarea name="main_message" placeholder="What do you want someone to feel or think after they see this? What's the one thing they should take away?"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Brand colours</label>
+          <input type="text" name="brand_colours" placeholder="Hex codes if you have them, or describe the feel (e.g. warm and earthy, clean and clinical)"/>
+        </div>
+
+        <div class="field">
+          <label>Logo</label>
+          <input type="text" name="logo" placeholder="Link to your logo file, or type 'I'll email it' or 'I don't have one yet'"/>
+        </div>
+
+        <div class="field">
+          <label>Links to include</label>
+          <input type="text" name="links" placeholder="Website, Instagram, booking link, anything you want on there"/>
+        </div>
+
+        <div class="field">
+          <label>Reference sites (optional)</label>
+          <input type="text" name="references" placeholder="Sites you like the look or feel of — doesn't need to be in your industry"/>
+        </div>
+
+        <div class="field">
+          <label>Anything else</label>
+          <textarea name="anything_else" placeholder="Specific requirements, things to avoid, context I should know." style="min-height:72px;"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Your email</label>
+          <input type="email" name="email" placeholder="So I can reply directly to you" required/>
+        </div>
+
+        <button type="submit" class="submit-btn">Send my content →</button>
+      </form>
+
+      <div class="success-card" id="successCard" style="display:none;">
+        <h3>Got it. You're all set.</h3>
+        <p>I have everything I need to get started. I'll be in touch within 24 hours with a first look.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var STRIPE = {
+    '297': 'https://buy.stripe.com/9B69AS0UH4nfeCE97253O05',
+    '550': 'https://buy.stripe.com/28E3cu46TbPHamobfa53O06'
+  };
+
+  function handleTier() {
+    var tier = document.getElementById('g_tier').value;
+    var depDisplay = document.getElementById('depositDisplay');
+    var custField = document.getElementById('customPriceField');
+    var stripeInput = document.getElementById('g_stripe');
+    var note = document.getElementById('g_stripeNote');
+    var depInput = document.getElementById('g_deposit');
+
+    depDisplay.style.display = 'none';
+    custField.style.display = 'none';
+
+    if (!tier) return;
+
+    if (tier === 'custom') {
+      custField.style.display = 'block';
+      note.textContent = 'Create a Stripe payment link for the deposit amount and paste it above.';
+      stripeInput.value = '';
+      return;
+    }
+
+    var price = parseInt(tier);
+    var dep = price === 297 ? price : Math.round(price / 2);
+    depInput.value = '$' + dep.toLocaleString();
+    depDisplay.style.display = 'block';
+
+    if (STRIPE[tier]) {
+      stripeInput.value = STRIPE[tier];
+      note.textContent = 'Pre-filled with your existing Stripe link. Replace if needed.';
+    } else {
+      stripeInput.value = '';
+      note.textContent = 'No Stripe link saved for this tier yet. Create one for $' + dep.toLocaleString() + ' and paste it above.';
+    }
+  }
+
+  function calcCustomDeposit() {
+    var cp = parseInt(document.getElementById('g_customprice').value) || 0;
+    var dep = Math.round(cp / 2);
+    document.getElementById('g_deposit').value = dep ? '$' + dep.toLocaleString() : '';
+    document.getElementById('depositDisplay').style.display = dep ? 'block' : 'none';
+  }
+
+  function generate() {
+    var name     = document.getElementById('g_name').value.trim();
+    var project  = document.getElementById('g_project').value.trim();
+    var tier     = document.getElementById('g_tier').value;
+    var stripe   = document.getElementById('g_stripe').value.trim();
+    var scope    = document.getElementById('g_scope').value.trim();
+    var excl     = document.getElementById('g_excl').value.trim();
+    var delivery = document.getElementById('g_delivery').value.trim();
+
+    if (!name || !project || !tier || !stripe || !scope || !delivery) {
+      alert('Please fill in all required fields before generating the link.');
+      return;
+    }
+
+    var price, dep;
+    if (tier === 'custom') {
+      price = parseInt(document.getElementById('g_customprice').value);
+      if (!price) { alert('Enter a custom price.'); return; }
+      dep = Math.round(price / 2);
+    } else {
+      price = parseInt(tier);
+      dep = price === 297 ? price : Math.round(price / 2);
+    }
+
+    var payload = { n:name, p:project, pr:price, dep:dep, sl:stripe, sc:scope, ex:excl, dl:delivery };
+    var hash = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+    var url = window.location.origin + window.location.pathname + '#' + hash;
+
+    document.getElementById('linkUrl').textContent = url;
+    var box = document.getElementById('linkBox');
+    box.classList.add('show');
+    box.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  }
+
+  function copyLink() {
+    var url = document.getElementById('linkUrl').textContent;
+    navigator.clipboard.writeText(url).then(function() {
+      var btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(function(){ btn.textContent = 'Copy link'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  function unlock() {
+    document.getElementById('lockedMsg').style.display = 'none';
+    document.getElementById('contentForm').style.display = 'block';
+    document.getElementById('d2').className = 'sdot done';
+    document.getElementById('d2').textContent = '✓';
+    document.getElementById('l1').classList.add('done');
+    document.getElementById('d3').className = 'sdot active';
+    document.getElementById('contentForm').scrollIntoView({ behavior:'smooth' });
+  }
+
+  function submitForm(e) {
+    e.preventDefault();
+    var form = document.getElementById('contentForm');
+    fetch(form.action, { method:'POST', body:new FormData(form), headers:{ 'Accept':'application/json' } })
+      .then(function(r) {
+        if (r.ok) {
+          form.style.display = 'none';
+          document.getElementById('successCard').style.display = 'block';
+          document.getElementById('d3').className = 'sdot done';
+          document.getElementById('d3').textContent = '✓';
+          document.getElementById('l2').classList.add('done');
+          document.getElementById('successCard').scrollIntoView({ behavior:'smooth' });
+        }
+      });
+  }
+
+  function renderClient(d) {
+    document.getElementById('clientView').style.display = 'block';
+    document.getElementById('briefHeading').textContent = 'Here\'s what we\'re building, ' + d.n + '.';
+    document.getElementById('cv_project').textContent = d.p;
+    document.getElementById('cv_scope').textContent = d.sc;
+    document.getElementById('cv_delivery').textContent = d.dl;
+    document.getElementById('cv_total').textContent = '$' + d.pr.toLocaleString();
+    if (d.ex) {
+      document.getElementById('cv_excl').textContent = d.ex;
+    } else {
+      document.getElementById('exclBox').style.display = 'none';
+    }
+    var isFullPay = d.dep === d.pr;
+    var balance = d.pr - d.dep;
+    document.getElementById('cv_deposit').textContent = '$' + d.dep.toLocaleString();
+    document.getElementById('cv_depNote').textContent = isFullPay
+      ? 'Full payment'
+      : '50% deposit · $' + balance.toLocaleString() + ' balance on delivery';
+    document.getElementById('cv_stripeBtn').href = d.sl;
+    document.getElementById('f_client').value = d.n;
+    document.getElementById('f_proj').value = d.p;
+    document.getElementById('f_subject').value = 'Content brief: ' + d.p + ' (' + d.n + ')';
+  }
+
+  (function init() {
+    var hash = window.location.hash.replace('#','');
+    if (hash) {
+      try {
+        var payload = JSON.parse(decodeURIComponent(escape(atob(hash))));
+        renderClient(payload);
+      } catch(e) {
+        document.getElementById('generatorView').style.display = 'block';
+      }
+    } else {
+      document.getElementById('generatorView').style.display = 'block';
+    }
+  })();
+</script>
+</body>
+</html>
